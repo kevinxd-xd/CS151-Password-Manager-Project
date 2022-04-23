@@ -11,8 +11,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			HBox root = (HBox)FXMLLoader.load(getClass().getResource("Master.fxml"));
-			Scene scene = new Scene(root,800,800);
+			HBox root = (HBox)FXMLLoader.load(getClass().getResource("login.fxml"));
+			Scene scene = new Scene(root,1000,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
