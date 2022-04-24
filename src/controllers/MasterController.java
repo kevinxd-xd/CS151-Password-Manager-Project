@@ -1,5 +1,5 @@
-package application;
+package controllers;
 
 public class MasterController {
-	
+
 }

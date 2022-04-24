@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="800.0" prefWidth="657.0">
          <children>
@@ -24,12 +24,12 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="144.0" prefHeight="270.0" prefWidth="380.0">
                      <children>
-                        <TextField promptText="Username">
+                        <TextField fx:id="usernameInput" onAction="#authenticate" promptText="Username">
                            <VBox.margin>
                               <Insets top="50.0" />
                            </VBox.margin>
                         </TextField>
-                        <PasswordField promptText="Password">
+                        <PasswordField fx:id="passwordInput" onAction="#authenticate" promptText="Password">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -42,12 +42,12 @@
                               <Font name="Arial" size="14.0" />
                            </font>
                         </Hyperlink>
-                        <Hyperlink alignment="CENTER" prefHeight="40.0" prefWidth="383.0" text="Don't have an account? Sign up!">
+                        <Hyperlink fx:id="signUpHl" alignment="CENTER" onAction="#showSignUp" prefHeight="40.0" prefWidth="383.0" text="Don't have an account? Sign up!">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Hyperlink>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="174.0" text="Login">
+                        <Button fx:id="loginBttn" mnemonicParsing="false" onAction="#authenticate" prefHeight="40.0" prefWidth="174.0" text="Login">
                            <VBox.margin>
                               <Insets top="15.0" />
                            </VBox.margin>
