@@ -9,19 +9,18 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginController {
-	@FXML
-	private Button loginBttn;
+public class LoginController implements MasterController{
+
+	
+	/*
+	 * This method will communicate with the DAO to authenticate the user
+	 */
 	@FXML
 	private TextField usernameInput;
 	@FXML
 	private PasswordField passwordInput;
 	@FXML
-	private Hyperlink signUpHl;
-	
-	/*
-	 * This method will communicate with the DAO to authenticate the user
-	 */
+	private Button loginBttn;
 	@FXML
 	public void authenticate() {
 		// Passes parameters to the DAO and will authenticate
@@ -31,17 +30,20 @@ public class LoginController {
 	 * When the sign up hyperlink is clicked, this method will switch to the sign up page
 	 */
 	@FXML
+	private Hyperlink signUpHl;
+	@FXML
 	public void showSignUp() {
-		try {
-			FXMLLoader signUpPage = new FXMLLoader(getClass().getResource("../view/signup.fxml"));
-			Stage mainStage = (Stage) signUpHl.getScene().getWindow();
-			mainStage.setScene(new Scene(signUpPage.load()));
-			mainStage.show();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		switchScene(signUpHl, "../view/signup.fxml");
 	}
 	
+	/*
+	 * When the forgot password hyperlink is clicked, this method will switch to the forgot password page
+	 */
+	@FXML
+	private Hyperlink forgotPWHl;
+	@FXML
+	public void showForgot() {
+		switchScene(signUpHl, "../view/forgot.fxml");
+	}
 
 }

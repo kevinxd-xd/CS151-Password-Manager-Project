@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-public class SignUpController {
+public class SignUpController implements MasterController{
 
 	@FXML
 	private ComboBox<String> securityComboBox;	
@@ -26,15 +26,6 @@ public class SignUpController {
 	private Button backBttn;
 	@FXML
 	public void showLogin() {
-		try {
-			FXMLLoader signUpPage = new FXMLLoader(getClass().getResource("../view/login.fxml"));
-			Stage mainStage = (Stage) backBttn.getScene().getWindow();
-			mainStage.setScene(new Scene(signUpPage.load()));
-			mainStage.setTitle("Login");
-			mainStage.show();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		switchScene(backBttn, "../view/login.fxml");
 	}
 }
