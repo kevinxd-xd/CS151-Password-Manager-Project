@@ -1,10 +1,8 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+
 
 public class ForgotPWController implements MasterController{
 
@@ -14,4 +12,9 @@ public class ForgotPWController implements MasterController{
 	public void showLogin() {
 		switchScene(backBttn, "../view/login.fxml");
 	}
+	
+	public void recoverPass() {
+		// Will communicate with DAO to retrieve security question and answer corresponding with the user
+	}
+	
 }
