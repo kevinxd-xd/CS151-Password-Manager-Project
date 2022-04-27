@@ -1,4 +1,4 @@
-package application;
+package model;
 
 import java.util.Date;
 
@@ -9,6 +9,7 @@ public class Account {
 	private Date creationDate;
 	private Date expirationDate;
 	private boolean favorited;
+	private int userID;
 	
 	public Account() {}
 	
@@ -47,5 +48,13 @@ public class Account {
 	}
 	public void setFavorited(boolean favorited) {
 		this.favorited = favorited;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 }

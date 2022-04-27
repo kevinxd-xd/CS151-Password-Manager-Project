@@ -1,4 +1,4 @@
-package application;
+package model;
 
 import java.io.File;
 
@@ -8,6 +8,7 @@ public class User {
 	private String Question;
 	private String questionAnswer;
 	private File PFPimage;
+	private int userID;
 	
 	public User() {}
 
@@ -49,5 +50,13 @@ public class User {
 
 	public void setPFPimage(File pFPimage) {
 		PFPimage = pFPimage;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 }
