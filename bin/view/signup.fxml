@@ -29,7 +29,7 @@
                   <Insets left="100.0" />
                </HBox.margin>
                <children>
-                  <TextField promptText="Username">
+                  <TextField fx:id="inputUsername" promptText="Username">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
@@ -37,17 +37,17 @@
                         <Insets top="50.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField promptText="Email">
+                  <TextField fx:id="inputEmail" promptText="Email">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField promptText="Password">
+                  <PasswordField fx:id="inputPassword" promptText="Password">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <PasswordField promptText="Re-enter Password">
+                  <PasswordField fx:id="inputRePassword" promptText="Re-enter Password">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
@@ -64,7 +64,7 @@
                         <Insets top="50.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <TextField promptText="Security Answer">
+                  <TextField fx:id="inputSecurityAnswer" promptText="Security Answer">
                      <VBox.margin>
                         <Insets top="47.0" />
                      </VBox.margin>
