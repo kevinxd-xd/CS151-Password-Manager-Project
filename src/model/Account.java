@@ -1,13 +1,13 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Account {
 	private String email;
 	private String password;
 	private String websiteName;
-	private Date creationDate;
-	private Date expirationDate;
+	private LocalDate creationDate;
+	private LocalDate expirationDate;
 	private boolean favorited;
 	private int userID;
 	
@@ -31,16 +31,16 @@ public class Account {
 	public void setWebsiteName(String websiteName) {
 		this.websiteName = websiteName;
 	}
-	public Date getCreationDate() {
+	public LocalDate getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Date getExpirationDate() {
+	public LocalDate getExpirationDate() {
 		return expirationDate;
 	}
-	public void setExpirationDate(Date expirationDate) {
+	public void setExpirationDate(LocalDate expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 	public boolean isFavorited() {

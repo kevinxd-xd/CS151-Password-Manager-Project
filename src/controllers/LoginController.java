@@ -1,10 +1,15 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.User;
+import model.UsersReader;
 
 public class LoginController implements MasterController{
 
@@ -20,7 +25,12 @@ public class LoginController implements MasterController{
 	private Button loginBttn;
 	@FXML
 	public void authenticate() {
-		// Passes parameters to the DAO and will authenticate
+		UsersReader ur = new UsersReader();
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
@@ -30,7 +40,7 @@ public class LoginController implements MasterController{
 	private Hyperlink signUpHl;
 	@FXML
 	public void showSignUp() {
-		switchScene(signUpHl, "../view/signup.fxml");
+		switchScene(signUpHl, "view/signup.fxml");
 	}
 	
 	/*
@@ -40,7 +50,7 @@ public class LoginController implements MasterController{
 	private Hyperlink forgotPWHl;
 	@FXML
 	public void showForgot() {
-		switchScene(forgotPWHl, "../view/forgot.fxml");
+		switchScene(forgotPWHl, "view/forgot.fxml");
 	}
 
 }

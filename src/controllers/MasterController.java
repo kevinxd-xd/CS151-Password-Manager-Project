@@ -9,7 +9,7 @@ public interface MasterController {
 
 	default public void switchScene(Node element, String path) {
 		try {
-			FXMLLoader page = new FXMLLoader(getClass().getResource(path));
+			FXMLLoader page = new FXMLLoader(getClass().getClassLoader().getResource(path));
 			Stage mainStage = (Stage) element.getScene().getWindow();
 			mainStage.setScene(new Scene(page.load()));
 			mainStage.show();

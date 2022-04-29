@@ -10,7 +10,7 @@ public class ForgotPWController implements MasterController{
 	private Button backBttn;
 	@FXML
 	public void showLogin() {
-		switchScene(backBttn, "../view/login.fxml");
+		switchScene(backBttn, "view/login.fxml");
 	}
 	
 	public void recoverPass() {

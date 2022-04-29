@@ -17,9 +17,9 @@ public class Main extends Application {
 		 * Initializes the first scene to the login page
 		 */
 		try {
-			HBox root = (HBox)FXMLLoader.load(getClass().getResource("../view/login.fxml"));
+			HBox root = (HBox)FXMLLoader.load(getClass().getClassLoader().getResource("view/login.fxml"));
 			Scene scene = new Scene(root,1000,800);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getClassLoader().getResource("css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
