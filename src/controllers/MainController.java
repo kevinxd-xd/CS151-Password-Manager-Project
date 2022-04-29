@@ -18,9 +18,34 @@ public class MainController implements ControllerInterface{
 	@FXML
 	public void initialize() {
 		appInstance.setMainBox(appMainBox);
+		
+		try {
+			AnchorPane pwPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("view/homepage.fxml"));
+			HBox mainBox = appInstance.getMainBox();
+			mainBox.getChildren().add(pwPane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	
+	@FXML
+	private Button homeBttn;
+	@FXML
+	public void showHome() {
+		try {
+			AnchorPane pwPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("view/homepage.fxml"));
+			
+			HBox mainBox = appInstance.getMainBox();
+			
+			if (mainBox.getChildren().size() > 1) {
+				mainBox.getChildren().remove(1);
+			}
+			
+			mainBox.getChildren().add(pwPane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@FXML
 	private Button allPWBttn;
