@@ -37,6 +37,6 @@
       </GridPane>
       <Button fx:id="saveBttn" layoutX="237.0" layoutY="300.0" mnemonicParsing="false" onAction="#saveToCSV" prefHeight="25.0" prefWidth="52.0" text="Save" />
       <Button fx:id="cancelBttn" layoutX="165.0" layoutY="300.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancel" />
-      <Label fx:id="errorLbl" alignment="CENTER" layoutX="57.0" layoutY="252.0" prefHeight="25.0" prefWidth="238.0" />
+      <Label fx:id="errorLbl" alignment="CENTER" layoutX="31.0" layoutY="248.0" prefHeight="25.0" prefWidth="238.0" />
    </children>
 </AnchorPane>

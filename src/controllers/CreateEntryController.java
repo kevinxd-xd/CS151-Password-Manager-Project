@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import model.Account;
 import model.AccountsWriter;
 
@@ -33,7 +34,8 @@ public class CreateEntryController {
 	private Label errorLbl;
 	@FXML
 	public void saveToCSV() {
-		if (inputUser.getText().equals("") || inputUser.getText().equals("") || inputPW.getText().equals("")) {
+		if (inputUser.getText().equals("") || inputWeb.getText().equals("") || inputPW.getText().equals("")) {
+			errorLbl.setTextFill(Color.RED);
 			errorLbl.setText("Not all fields are filled!");
 			return;
 		}
