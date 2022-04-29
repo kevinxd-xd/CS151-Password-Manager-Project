@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
+import model.UsersWriter;
 
 
 public class SignUpController implements ControllerInterface{
@@ -46,7 +47,12 @@ public class SignUpController implements ControllerInterface{
 	private CheckBox TOSToggle;
 	@FXML
 	public void createNewAcc() {
+//		if(inputUser.getText().equals("") || inputEmail.getText().equals("") || inputPassword.getText().equals("") || inputRePassword.getText().equals("") || inputSecurityAnswer.getText().equals("")) {
+//			//Label for "Fields not filled" TODO
+//			return;
+//		}
 		if(inputPassword.getText() != inputRePassword.getText()) {
+			//Label for "Passwords not matching" TODO
 			return;
 		}
 		// Checks if the check box is ticked
@@ -59,6 +65,14 @@ public class SignUpController implements ControllerInterface{
 		newUser.setPassword(inputPassword.getText());
 		newUser.setQuestion(securityComboBox.getSelectionModel().getSelectedItem());
 		newUser.setQuestionAnswer(inputSecurityAnswer.getText());
+		newUser.setUserID(newUser.hashCode());
+		UsersWriter uw = new UsersWriter();
+		try {
+			uw.write(uw.toString(newUser));
+		}
+		catch(Exception e) {
+			e.getStackTrace();
+		}
 	}
 	
 }
