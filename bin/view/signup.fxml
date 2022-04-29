@@ -73,12 +73,12 @@
             </VBox>
          </children>
       </HBox>
-      <CheckBox mnemonicParsing="false" prefHeight="75.0" prefWidth="508.0" text="I agree to the Terms of Service and Privacy Policy">
+      <CheckBox fx:id="TOSToggle" mnemonicParsing="false" prefHeight="75.0" prefWidth="508.0" text="I agree to the Terms of Service and Privacy Policy">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </CheckBox>
-      <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="197.0" text="Create New Account">
+      <Button fx:id="createAccBttn" mnemonicParsing="false" onAction="#createNewAcc" prefHeight="47.0" prefWidth="197.0" text="Create New Account">
          <font>
             <Font name="Arial" size="18.0" />
          </font>

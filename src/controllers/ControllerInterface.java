@@ -5,7 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public interface MasterController {
+public interface ControllerInterface {
+	/*
+	 * Switches the scene that is on the stage using a node and the path of the fxml
+	 */
 
 	default public void switchScene(Node element, String path) {
 		try {

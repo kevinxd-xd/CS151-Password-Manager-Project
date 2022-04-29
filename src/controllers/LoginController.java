@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import application.CommonObjs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -11,8 +12,9 @@ import javafx.scene.control.TextField;
 import model.User;
 import model.UsersReader;
 
-public class LoginController implements MasterController{
+public class LoginController implements ControllerInterface{
 
+	private CommonObjs appInstance = CommonObjs.getInstance();
 	
 	/*
 	 * This method will communicate with the DAO to authenticate the user
@@ -27,6 +29,9 @@ public class LoginController implements MasterController{
 	public void authenticate() {
 		UsersReader ur = new UsersReader();
 		try {
+			//do what needs to be done to authenticate
+			//once authenticated set the user for the commonobjs
+			switchScene(loginBttn, "view/main.fxml");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

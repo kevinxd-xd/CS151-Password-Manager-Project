@@ -22,8 +22,11 @@
             </Label>
             <Label alignment="CENTER" prefHeight="92.0" prefWidth="691.0" text="Enter Your Recovery Email">
                <font>
-                  <Font name="Arial" size="56.0" />
+                  <Font name="Arial" size="36.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </Label>
             <Pane prefHeight="305.0" prefWidth="1000.0">
                <children>
@@ -31,13 +34,16 @@
                      <children>
                         <TextField prefWidth="370.0" promptText="Email">
                            <VBox.margin>
-                              <Insets top="70.0" />
+                              <Insets top="40.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="191.0" text="Recover Password">
+                        <Button fx:id="recoverBttn" mnemonicParsing="false" onAction="#recoverPass" prefHeight="70.0" prefWidth="191.0" text="Recover Password">
                            <VBox.margin>
                               <Insets top="100.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
                         </Button>
                      </children>
                   </VBox>
@@ -46,7 +52,7 @@
          </children></VBox>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button fx:id="backBttn" layoutX="65.0" layoutY="51.0" mnemonicParsing="false" onAction="#showLogin" prefHeight="73.0" prefWidth="96.0" text="Back">
+            <Button fx:id="backBttn" layoutX="65.0" layoutY="51.0" mnemonicParsing="false" onAction="#showLogin" prefHeight="70.0" prefWidth="120.0" text="Back">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>

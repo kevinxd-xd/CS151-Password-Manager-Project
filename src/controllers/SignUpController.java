@@ -2,13 +2,14 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 
 
-public class SignUpController implements MasterController{
+public class SignUpController implements ControllerInterface{
 
 	@FXML
-	private ComboBox<String> securityComboBox;	
+	private ComboBox<String> securityComboBox;
 	@FXML
 	public void initialize() {
 		securityComboBox.getItems().clear();
@@ -26,4 +27,18 @@ public class SignUpController implements MasterController{
 	public void showLogin() {
 		switchScene(backBttn, "view/login.fxml");
 	}
+	
+	
+	@FXML
+	private Button createAccBttn;
+	@FXML
+	private CheckBox TOSToggle;
+	@FXML
+	public void createNewAcc() {
+		// Checks if the check box is ticked
+		if (TOSToggle.isSelected()) {
+			switchScene(createAccBttn, "view/login.fxml");
+		}
+	}
+	
 }
