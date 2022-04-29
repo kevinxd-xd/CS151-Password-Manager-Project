@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Account;
@@ -19,6 +20,7 @@ public class CreateEntryController {
 		cancelBttn.getScene().getWindow().hide();
 	}
 	
+	
 	@FXML
 	private Button saveBttn;
 	@FXML
@@ -28,7 +30,13 @@ public class CreateEntryController {
 	@FXML
 	private PasswordField inputPW;
 	@FXML
+	private Label errorLbl;
+	@FXML
 	public void saveToCSV() {
+		if (inputUser.getText().equals("") || inputUser.getText().equals("") || inputPW.getText().equals("")) {
+			errorLbl.setText("Not all fields are filled!");
+			return;
+		}
 		Account accToAdd = new Account();
 		accToAdd.setCreationDate(LocalDate.now());
 		accToAdd.setExpirationDate(LocalDate.now().plusDays(90));

@@ -26,6 +26,11 @@
                   <Insets left="15.0" top="40.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="logoutBttn" mnemonicParsing="false" onAction="#logout" prefHeight="70.0" prefWidth="140.0" text="Logout">
+               <VBox.margin>
+                  <Insets left="15.0" top="470.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </children>
