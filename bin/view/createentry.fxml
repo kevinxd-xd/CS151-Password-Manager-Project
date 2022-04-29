@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAccController">
+<AnchorPane prefHeight="350.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateEntryController">
    <children>
       <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0">
         <columnConstraints>
@@ -30,9 +30,9 @@
             </Label>
             <Label alignment="CENTER" prefHeight="50.0" prefWidth="145.0" text="Email/Username:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Label alignment="CENTER" prefHeight="50.0" prefWidth="145.0" text="Password:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <PasswordField prefHeight="25.0" prefWidth="118.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
+            <PasswordField fx:id="inputPW" prefHeight="25.0" prefWidth="118.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="inputUser" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="inputWeb" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Button fx:id="saveBttn" layoutX="237.0" layoutY="300.0" mnemonicParsing="false" onAction="#saveToCSV" prefHeight="25.0" prefWidth="52.0" text="Save" />

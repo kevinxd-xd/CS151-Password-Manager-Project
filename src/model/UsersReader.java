@@ -46,23 +46,4 @@ public class UsersReader {
 		ArrayList<User> allUsers = getAllUser();
 		return allUsers.contains(userObj);
 	}
-	
-	public static void main(String[] args) {
-		try {
-			User newaccs = new User();
-			newaccs.setUsername("username");
-			newaccs.setEmail("w");
-			newaccs.setPassword("password");
-			newaccs.setQuestion("weaf");
-			newaccs.setQuestionAnswer("eawf");
-			newaccs.setUserID(5);
-			
-			UsersReader ur = new UsersReader();
-			System.out.println(ur.accExists(newaccs));
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
 }
