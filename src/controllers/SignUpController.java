@@ -47,18 +47,20 @@ public class SignUpController implements ControllerInterface{
 	private CheckBox TOSToggle;
 	@FXML
 	public void createNewAcc() {
-//		if(inputUser.getText().equals("") || inputEmail.getText().equals("") || inputPassword.getText().equals("") || inputRePassword.getText().equals("") || inputSecurityAnswer.getText().equals("")) {
-//			//Label for "Fields not filled" TODO
-//			return;
-//		}
-		if(inputPassword.getText() != inputRePassword.getText()) {
+		if(inputUser.getText().equals("") || inputEmail.getText().equals("") || inputPassword.getText().equals("") || inputRePassword.getText().equals("") || inputSecurityAnswer.getText().equals("")) {
+			//Label for "Fields not filled" TODO
+			return;
+		}
+		if(!inputPassword.getText().equals(inputRePassword.getText())) {
 			//Label for "Passwords not matching" TODO
 			return;
 		}
-		// Checks if the check box is ticked
-		if (TOSToggle.isSelected()) {
-			switchScene(createAccBttn, "view/login.fxml");
+		// Checks if the check box is ticked && if all box filled && passwords in both pw fields match
+		if (!TOSToggle.isSelected()) {
+			//Label for "unchecked" TODO
+			return;
 		}
+		switchScene(createAccBttn, "view/login.fxml");
 		User newUser = new User();
 		newUser.setUsername(inputUser.getText());
 		newUser.setEmail(inputEmail.getText());

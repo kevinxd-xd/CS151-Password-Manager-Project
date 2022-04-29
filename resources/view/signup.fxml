@@ -29,7 +29,7 @@
                   <Insets left="100.0" />
                </HBox.margin>
                <children>
-                  <TextField fx:id="inputUsername" promptText="Username">
+                  <TextField fx:id="inputUser" promptText="Username">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
