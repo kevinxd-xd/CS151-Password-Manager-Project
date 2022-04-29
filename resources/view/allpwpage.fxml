@@ -4,9 +4,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AllPWController">
    <children>
       <ListView layoutX="33.0" layoutY="86.0" prefHeight="700.0" prefWidth="735.0" />
-      <Button layoutX="671.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Add Account" />
+      <Button fx:id="addBttn" layoutX="671.0" layoutY="46.0" mnemonicParsing="false" onAction="#openAddAccStage" prefHeight="25.0" prefWidth="97.0" text="Add Account" />
    </children>
 </AnchorPane>

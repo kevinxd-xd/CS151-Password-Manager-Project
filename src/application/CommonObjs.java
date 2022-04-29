@@ -1,6 +1,9 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.scene.layout.HBox;
+import model.Account;
 import model.User;
 
 public class CommonObjs {
@@ -11,6 +14,7 @@ public class CommonObjs {
 	//Things that need to be shared
 	private HBox mainBox;
 	private User currentUser;
+	private ArrayList<Account> accountList;
 	
 	
 	private CommonObjs() {}
@@ -33,6 +37,14 @@ public class CommonObjs {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
+	}
+
+	public ArrayList<Account> getAccountList() {
+		return accountList;
+	}
+
+	public void setAccountList(ArrayList<Account> accountList) {
+		this.accountList = accountList;
 	}
 	
 	

@@ -40,7 +40,7 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="179.0" text="Change Password">
+                        <Button fx:id="changePWBttn" mnemonicParsing="false" onAction="#changeAccDetails" prefHeight="75.0" prefWidth="179.0" text="Change Password">
                            <VBox.margin>
                               <Insets top="40.0" />
                            </VBox.margin>

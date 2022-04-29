@@ -12,12 +12,34 @@ import javafx.scene.layout.HBox;
 public class MainController implements ControllerInterface{
 	
 	private CommonObjs appInstance = CommonObjs.getInstance();
+	
+	/*
+	 * Method to change pane showing in main
+	 */
+	private void changePane(String fxmlPath) {
+		try {
+			AnchorPane newPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource(fxmlPath));
+			
+			HBox mainBox = appInstance.getMainBox();
+			
+			if (mainBox.getChildren().size() > 1) {
+				mainBox.getChildren().remove(1);
+			}
+			mainBox.getChildren().add(newPane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@FXML
 	private HBox appMainBox;
 	@FXML
 	public void initialize() {
 		appInstance.setMainBox(appMainBox);
+		
+		
+		// Check for expired passwords
+		
 		
 		try {
 			AnchorPane pwPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("view/homepage.fxml"));
@@ -32,38 +54,14 @@ public class MainController implements ControllerInterface{
 	private Button homeBttn;
 	@FXML
 	public void showHome() {
-		try {
-			AnchorPane pwPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("view/homepage.fxml"));
-			
-			HBox mainBox = appInstance.getMainBox();
-			
-			if (mainBox.getChildren().size() > 1) {
-				mainBox.getChildren().remove(1);
-			}
-			
-			mainBox.getChildren().add(pwPane);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		changePane("view/homepage.fxml");
 	}
 	
 	@FXML
 	private Button allPWBttn;
 	@FXML
 	public void showAllPW() {
-		try {
-			AnchorPane pwPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("view/allpwpage.fxml"));
-			
-			HBox mainBox = appInstance.getMainBox();
-			
-			if (mainBox.getChildren().size() > 1) {
-				mainBox.getChildren().remove(1);
-			}
-			
-			mainBox.getChildren().add(pwPane);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		changePane("view/allpwpage.fxml");
 	}
 
 }
