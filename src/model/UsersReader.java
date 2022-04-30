@@ -41,9 +41,4 @@ public class UsersReader {
 		csvFileReader.close();
 		return accs;
 	}
-	
-	public boolean accExists(User userObj) throws IOException {
-		ArrayList<User> allUsers = getAllUser();
-		return allUsers.contains(userObj);
-	}
 }

@@ -21,7 +21,7 @@ public class AccountsReader {
 		createAccount.setPassword(input[1]);
 		createAccount.setWebsiteName(input[2]);
 		createAccount.setCreationDate(LocalDate.parse(input[3]));
-		createAccount.setExpirationDate(LocalDate.parse(input[3]));
+		createAccount.setExpirationDate(LocalDate.parse(input[4]));
 		createAccount.setFavorited(Boolean.parseBoolean(input[5]));
 		createAccount.setUserID(Integer.parseInt(input[6]));
 		
@@ -40,7 +40,6 @@ public class AccountsReader {
 				accs.add(toAccObj(line.split(",")));
 			}
 		}
-		
 		csvLineReader.close();
 		csvFileReader.close();
 		return accs;

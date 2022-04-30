@@ -16,5 +16,6 @@
             <TableColumn fx:id="credExpire" editable="false" prefWidth="120.0" resizable="false" text="Expiration Date" />
         </columns>
       </TableView>
+      <Button fx:id="refreshBttn" layoutX="555.0" layoutY="46.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="97.0" text="Refresh" />
    </children>
 </AnchorPane>
