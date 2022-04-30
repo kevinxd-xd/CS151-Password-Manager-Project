@@ -29,6 +29,8 @@ public class LoginController implements ControllerInterface{
 	public void authenticate() {
 		UsersReader ur = new UsersReader();
 		try {
+			
+			
 			//do what needs to be done to authenticate
 			//once authenticated set the user for the commonobjs
 			switchScene(loginBttn, "view/main.fxml");
