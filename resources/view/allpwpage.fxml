@@ -14,8 +14,10 @@
           <TableColumn fx:id="credUser" editable="false" prefWidth="120.0" resizable="false" text="Username/Email" />
             <TableColumn fx:id="credCreation" editable="false" prefWidth="120.0" resizable="false" text="Creation Date" />
             <TableColumn fx:id="credExpire" editable="false" prefWidth="120.0" resizable="false" text="Expiration Date" />
+            <TableColumn fx:id="credPW" prefWidth="120.0" text="Password" />
         </columns>
       </TableView>
       <Button fx:id="refreshBttn" layoutX="555.0" layoutY="46.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="97.0" text="Refresh" />
+      <Button fx:id="copyBttn" layoutX="417.0" layoutY="46.0" mnemonicParsing="false" onAction="#copyToClip" prefHeight="25.0" prefWidth="118.0" text="Copy to Clipboard" />
    </children>
 </AnchorPane>
