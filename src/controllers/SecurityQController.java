@@ -15,6 +15,8 @@ public class SecurityQController implements ControllerInterface{
 	@FXML
 	private TextField inputAnswer;
 	@FXML
+	private Label errLabel;
+	@FXML
 	public void showForgot() {
 		switchScene(backBttn, "view/forgot.fxml");
 	}
