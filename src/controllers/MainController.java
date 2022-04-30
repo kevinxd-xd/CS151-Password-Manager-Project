@@ -1,13 +1,19 @@
 package controllers;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import application.CommonObjs;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import model.Account;
+import model.AccountsReader;
 
 public class MainController implements ControllerInterface{
 	
@@ -37,10 +43,23 @@ public class MainController implements ControllerInterface{
 	public void initialize() {
 		appInstance.setMainBox(appMainBox);
 		
-		
-		// Check for expired passwords
-		
-		
+		AccountsReader ar = new AccountsReader();
+        try {
+            ArrayList<Account> pass = ar.getAllAccounts(appInstance.getCurrentUser());
+
+            for (Account a : pass) {
+                if (a.getExpirationDate().isBefore(LocalDate.now())) {
+                    Dialog<String> test = new Dialog<>();
+                    DialogPane alertPane = (DialogPane) FXMLLoader
+                            .load(getClass().getClassLoader().getResource("view/alert.fxml"));
+                    test.setDialogPane(alertPane);
+                    test.show();
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 		try {
 			AnchorPane pwPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("view/homepage.fxml"));
 			HBox mainBox = appInstance.getMainBox();

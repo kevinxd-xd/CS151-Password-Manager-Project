@@ -9,7 +9,7 @@
       <ButtonType fx:constant="CLOSE" />
    </buttonTypes>
    <content>
-      <Label alignment="CENTER" text="&lt;This password expired&gt;" />
+      <Label alignment="CENTER" text="You have expired passwords!" />
    </content>
    <header>
       <Label alignment="CENTER" text="Password Expiration Warning!" />

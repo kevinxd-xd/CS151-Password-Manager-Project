@@ -82,7 +82,6 @@ public class SignUpController implements ControllerInterface{
 				}
 			}
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} 
 		switchScene(createAccBttn, "view/login.fxml");
