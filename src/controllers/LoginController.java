@@ -32,7 +32,7 @@ public class LoginController implements ControllerInterface {
 
 		try {
 			ArrayList<User> acc = ur.getAllUser();
-			for (User a : acc) {
+			for (User a : acc) {//Verifies entered login info matches stored credentials
 				if (a.getUsername().equals(username)) {
 					if (a.getPassword().equals(password)) {
 						appInstance.setCurrentUser(a);
