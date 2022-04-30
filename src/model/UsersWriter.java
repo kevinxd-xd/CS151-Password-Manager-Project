@@ -9,7 +9,7 @@ public class UsersWriter {
 	private File inputFile;
 	
 	public UsersWriter() {
-		this.inputFile = new File("./src/model/Users.csv");
+		this.inputFile = new File("./resources/data/Users.csv");
 	}
 	
 	public String toString(User userObj) {

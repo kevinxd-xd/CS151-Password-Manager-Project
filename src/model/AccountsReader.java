@@ -12,7 +12,7 @@ public class AccountsReader {
 	private File inputFile;
 	
 	public AccountsReader() {
-		this.inputFile = new File("./src/model/Accounts.csv");
+		this.inputFile = new File("./resources/data/Accounts.csv");
 	}
 	
 	public Account toAccObj(String[] input) {

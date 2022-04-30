@@ -11,7 +11,7 @@ public class UsersReader {
 	private File inputFile;
 	
 	public UsersReader() {
-		this.inputFile = new File("./src/model/Users.csv");
+		this.inputFile = new File("./resources/data/Users.csv");
 	}
 	
 	
