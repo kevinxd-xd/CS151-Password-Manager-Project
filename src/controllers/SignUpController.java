@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.User;
 
 
 public class SignUpController implements ControllerInterface{
@@ -28,18 +30,35 @@ public class SignUpController implements ControllerInterface{
 	public void showLogin() {
 		switchScene(backBttn, "view/login.fxml");
 	}
-	
-	
+	@FXML
+	private TextField inputUser;
+	@FXML
+	private TextField inputEmail;
+	@FXML
+	private PasswordField inputPassword;
+	@FXML
+	private PasswordField inputRePassword;
+	@FXML
+	private TextField inputSecurityAnswer;
 	@FXML
 	private Button createAccBttn;
 	@FXML
 	private CheckBox TOSToggle;
 	@FXML
 	public void createNewAcc() {
+		if(inputPassword.getText() != inputRePassword.getText()) {
+			return;
+		}
 		// Checks if the check box is ticked
 		if (TOSToggle.isSelected()) {
 			switchScene(createAccBttn, "view/login.fxml");
 		}
+		User newUser = new User();
+		newUser.setUsername(inputUser.getText());
+		newUser.setEmail(inputEmail.getText());
+		newUser.setPassword(inputPassword.getText());
+		newUser.setQuestion(securityComboBox.getSelectionModel().getSelectedItem());
+		newUser.setQuestionAnswer(inputSecurityAnswer.getText());
 	}
 	
 }
