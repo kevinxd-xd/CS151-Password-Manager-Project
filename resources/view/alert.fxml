@@ -12,6 +12,6 @@
       <Label alignment="CENTER" text="&lt;This password expired&gt;" />
    </content>
    <header>
-      <Label text="Password Expiration Warning!" />
+      <Label alignment="CENTER" text="Password Expiration Warning!" />
    </header>
 </DialogPane>
