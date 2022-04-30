@@ -15,7 +15,7 @@ public class UsersReader {
 	}
 	
 	
-	public User toUserObj(String[] input) {
+	public User toUserObj(String[] input) {//retrieves user entered username, email, and security details 
 		User createUser = new User();
 		createUser.setUsername(input[0]);
 		createUser.setEmail(input[1]);
