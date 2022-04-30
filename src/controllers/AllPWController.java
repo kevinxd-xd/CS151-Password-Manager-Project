@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Account;
@@ -46,6 +48,8 @@ public class AllPWController {
 	@FXML
 	private TableColumn<Account, String> credExpire;
 	@FXML
+	private TableColumn<Account, String> credPW;
+	@FXML
 	private TableView<Account> passwordTable;
 	@FXML
 	public void initialize() {
@@ -55,6 +59,7 @@ public class AllPWController {
 		credUser.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
 		credCreation.setCellValueFactory(new PropertyValueFactory<Account, String>("creationDate"));
 		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expirationDate"));
+		credPW.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
 		passwordTable.setItems(list);
 		
 	}
@@ -68,6 +73,21 @@ public class AllPWController {
 		passwordTable.setItems(list);
 	}
 	
+	
+	@FXML
+	private Button copyBttn;
+	@FXML
+	public void copyToClip() {
+		if (passwordTable.getSelectionModel().getSelectedItem() == null) {
+			return;
+		}
+		String pwSelected = passwordTable.getSelectionModel().getSelectedItem().getPassword();
+		final Clipboard clip = Clipboard.getSystemClipboard();
+		final ClipboardContent pwContent = new ClipboardContent();
+		pwContent.putString(pwSelected);
+		clip.setContent(pwContent);
+		
+	}
 	
 	/*
 	 * Method to grab the latest csv file for accounts
