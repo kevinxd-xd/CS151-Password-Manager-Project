@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import application.CommonObjs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.User;
 import model.UsersReader;
@@ -20,6 +21,8 @@ public class ForgotPWController implements ControllerInterface{
 	@FXML
 	private TextField inputEmail;
 	@FXML
+	private Label errLabel;
+	@FXML
 	public void showLogin() {
 		switchScene(backBttn, "view/login.fxml");
 	}
@@ -33,14 +36,13 @@ public class ForgotPWController implements ControllerInterface{
 			ArrayList<User> userList = ur.getAllUser();
 			User u = getUser(userList);
 			if(u == null) {
+				errLabel.setText("Email not found!");
 				return;
 			}
 			appInstance.setCurrentUser(u);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
 		switchScene(recoverBttn, "view/sec_question.fxml");
 	}
 	public User getUser(ArrayList<User> userList) {
