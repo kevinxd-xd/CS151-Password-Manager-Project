@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import application.CommonObjs;
@@ -25,7 +24,6 @@ public class LoginController implements ControllerInterface {
 	private PasswordField passwordInput;
 	@FXML
 	private Button loginBttn;
-
 	@FXML
 	public void authenticate() {
 		UsersReader ur = new UsersReader();
@@ -34,21 +32,14 @@ public class LoginController implements ControllerInterface {
 
 		try {
 			ArrayList<User> acc = ur.getAllUser();
-
 			for (User a : acc) {
-
 				if (a.getUsername().equals(username)) {
 					if (a.getPassword().equals(password)) {
 						appInstance.setCurrentUser(a);
 						switchScene(loginBttn, "view/main.fxml");
 					}
 				}
-
 			}
-
-			// do what needs to be done to authenticate
-			// once authenticated set the user for the commonobjs
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

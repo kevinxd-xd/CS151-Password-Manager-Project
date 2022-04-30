@@ -20,8 +20,7 @@ import model.AccountsReader;
 
 public class AllPWController {
 	
-//	private CommonObjs appInstance = CommonObjs.getInstance();
-//	private ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
+	private CommonObjs appInstance = CommonObjs.getInstance();
 	
 	@FXML
 	private Button addBttn;
@@ -50,12 +49,36 @@ public class AllPWController {
 	private TableView<Account> passwordTable;
 	@FXML
 	public void initialize() {
-//		credWeb.setCellValueFactory(new PropertyValueFactory<Account, String>("web"));
-//		credUser.setCellValueFactory(new PropertyValueFactory<Account, String>("user"));
-//		credCreation.setCellValueFactory(new PropertyValueFactory<Account, String>("creation"));
-//		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expiration"));
-//		
-//		passwordTable.setItems(list);
+		updateAccList();
+		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
+		credWeb.setCellValueFactory(new PropertyValueFactory<Account, String>("websiteName"));
+		credUser.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
+		credCreation.setCellValueFactory(new PropertyValueFactory<Account, String>("creationDate"));
+		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expirationDate"));
+		passwordTable.setItems(list);
 		
 	}
+	
+	@FXML
+	private Button refreshBttn;
+	@FXML
+	public void refreshTable() {
+		updateAccList();
+		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
+		passwordTable.setItems(list);
+	}
+	
+	
+	/*
+	 * Method to grab the latest csv file for accounts
+	 */
+	public void updateAccList() {
+		AccountsReader ar = new AccountsReader();
+		try {
+			appInstance.setAccountList(ar.getAllAccounts(appInstance.getCurrentUser()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

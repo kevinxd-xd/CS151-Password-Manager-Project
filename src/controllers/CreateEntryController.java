@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import application.CommonObjs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,8 @@ import model.Account;
 import model.AccountsWriter;
 
 public class CreateEntryController {
+	
+	private CommonObjs appInstance = CommonObjs.getInstance();
 	
 	@FXML
 	private Button cancelBttn;
@@ -44,7 +47,7 @@ public class CreateEntryController {
 		accToAdd.setExpirationDate(LocalDate.now().plusDays(90));
 		accToAdd.setEmail(inputUser.getText());
 		accToAdd.setFavorited(false);
-		accToAdd.setUserID(0); // fix later
+		accToAdd.setUserID(appInstance.getCurrentUser().getUserID());
 		accToAdd.setWebsiteName(inputWeb.getText());
 		accToAdd.setPassword(inputPW.getText());
 		
@@ -52,7 +55,6 @@ public class CreateEntryController {
 		try {
 			aw.write(aw.toString(accToAdd));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
