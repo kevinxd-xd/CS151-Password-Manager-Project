@@ -15,7 +15,7 @@ public class AccountsReader {
 		this.inputFile = new File("./resources/data/Accounts.csv");
 	}
 	
-	public Account toAccObj(String[] input) {
+	public Account toAccObj(String[] input) {//adds entered account details to the list of saved accounts
 		Account createAccount = new Account();
 		createAccount.setEmail(input[0]);
 		createAccount.setPassword(input[1]);
