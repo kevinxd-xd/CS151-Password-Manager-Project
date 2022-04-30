@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import application.CommonObjs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,6 +12,8 @@ import model.UsersReader;
 
 
 public class ForgotPWController implements ControllerInterface{
+	
+	private CommonObjs appInstance = CommonObjs.getInstance();
 
 	@FXML
 	private Button backBttn;
@@ -32,12 +35,7 @@ public class ForgotPWController implements ControllerInterface{
 			if(u == null) {
 				return;
 			}
-
-			//how to send question to next scene TODO
-			u.getQuestion();
-
-
-
+			appInstance.setCurrentUser(u);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
