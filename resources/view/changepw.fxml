@@ -30,16 +30,17 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="100.0" prefHeight="250.0" prefWidth="400.0">
                      <children>
-                        <TextField promptText="Enter new password">
+                        <TextField fx:id="inputPassword" promptText="Enter new password">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField promptText="Re-eneter new password">
+                        <TextField fx:id="inputRePassword" promptText="Re-enter new password">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                         </TextField>
+                        <Label fx:id="errLabel" alignment="CENTER" prefHeight="17.0" prefWidth="260.0" textFill="RED" />
                         <Button fx:id="changePWBttn" mnemonicParsing="false" onAction="#changeAccDetails" prefHeight="75.0" prefWidth="179.0" text="Change Password">
                            <VBox.margin>
                               <Insets top="40.0" />

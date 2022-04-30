@@ -23,4 +23,15 @@ public class UsersWriter {
 		bw.close();
 		fw.close();
 	}
+	public void writeTemp(String inputStr) throws IOException {
+		this.inputFile = new File("./resources/data/TempUsers.csv");
+		FileWriter fw = new FileWriter(inputFile, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+		bw.append(inputStr);
+		bw.close();
+		fw.close();
+	}
+	public File getInputFile() {
+		return inputFile;
+	}
 }
