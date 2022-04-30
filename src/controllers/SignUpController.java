@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
@@ -42,22 +43,24 @@ public class SignUpController implements ControllerInterface{
 	@FXML
 	private TextField inputSecurityAnswer;
 	@FXML
+	private Label errLabel;
+	@FXML
 	private Button createAccBttn;
 	@FXML
 	private CheckBox TOSToggle;
 	@FXML
 	public void createNewAcc() {
-		if(inputUser.getText().equals("") || inputEmail.getText().equals("") || inputPassword.getText().equals("") || inputRePassword.getText().equals("") || inputSecurityAnswer.getText().equals("")) {
-			//Label for "Fields not filled" TODO
+		if(inputUser.getText().equals("") || inputEmail.getText().equals("") || inputPassword.getText().equals("") || inputRePassword.getText().equals("") || inputSecurityAnswer.getText().equals("") || securityComboBox.getSelectionModel().getSelectedItem() == null) {
+			errLabel.setText("Fields not filled!");
 			return;
 		}
 		if(!inputPassword.getText().equals(inputRePassword.getText())) {
-			//Label for "Passwords not matching" TODO
+			errLabel.setText("Passwords not matching!");
 			return;
 		}
 		// Checks if the check box is ticked && if all box filled && passwords in both pw fields match
 		if (!TOSToggle.isSelected()) {
-			//Label for "unchecked" TODO
+			errLabel.setText("Terms of Service needs to be checked!");
 			return;
 		}
 		switchScene(createAccBttn, "view/login.fxml");

@@ -22,7 +22,7 @@
             <Font name="Arial" size="65.0" />
          </font>
       </Label>
-      <HBox prefHeight="410.0" prefWidth="1000.0">
+      <HBox prefHeight="403.0" prefWidth="1000.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="350.0">
                <HBox.margin>
@@ -73,6 +73,11 @@
             </VBox>
          </children>
       </HBox>
+      <Label fx:id="errLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="433.0" textFill="RED">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
       <CheckBox fx:id="TOSToggle" mnemonicParsing="false" prefHeight="75.0" prefWidth="508.0" text="I agree to the Terms of Service and Privacy Policy">
          <font>
             <Font name="Arial" size="20.0" />
