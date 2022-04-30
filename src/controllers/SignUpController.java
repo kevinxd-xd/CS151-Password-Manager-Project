@@ -1,5 +1,8 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -8,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
+import model.UsersReader;
 import model.UsersWriter;
 
 
@@ -63,6 +67,24 @@ public class SignUpController implements ControllerInterface{
 			errLabel.setText("Terms of Service needs to be checked!");
 			return;
 		}
+		UsersReader ur = new UsersReader();
+		ArrayList<User> userList;
+		try {
+			userList = ur.getAllUser();
+			for(User u : userList) {
+				if(u.getEmail().equals(inputEmail.getText())) {
+					errLabel.setText("Email already exists!");
+					return;
+				}
+				if(u.getUsername().equals(inputUser.getText())) {
+					errLabel.setText("Username already exists!");
+					return;
+				}
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
 		switchScene(createAccBttn, "view/login.fxml");
 		User newUser = new User();
 		newUser.setUsername(inputUser.getText());
