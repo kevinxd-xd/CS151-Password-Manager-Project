@@ -32,7 +32,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="320.0" layoutY="-4.0" prefHeight="304.0" prefWidth="370.0">
                      <children>
-                        <TextField prefWidth="370.0" promptText="Email">
+                        <TextField fx:id="inputEmail" prefWidth="370.0" promptText="Email">
                            <VBox.margin>
                               <Insets top="40.0" />
                            </VBox.margin>
