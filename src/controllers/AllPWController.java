@@ -50,13 +50,16 @@ public class AllPWController {
 	@FXML
 	private TableColumn<Account, String> credPW;
 	@FXML
+	private TableColumn<Account, String> credEmail;
+	@FXML
 	private TableView<Account> passwordTable;
 	@FXML
 	public void initialize() {
 		updateAccList();
 		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
+		credEmail.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
 		credWeb.setCellValueFactory(new PropertyValueFactory<Account, String>("websiteName"));
-		credUser.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
+		credUser.setCellValueFactory(new PropertyValueFactory<Account, String>("username"));
 		credCreation.setCellValueFactory(new PropertyValueFactory<Account, String>("creationDate"));
 		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expirationDate"));
 		credPW.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));

@@ -17,13 +17,14 @@ public class AccountsReader {
 	
 	public Account toAccObj(String[] input) {//adds entered account details to the list of saved accounts
 		Account createAccount = new Account();
-		createAccount.setEmail(input[0]);
-		createAccount.setPassword(input[1]);
-		createAccount.setWebsiteName(input[2]);
-		createAccount.setCreationDate(LocalDate.parse(input[3]));
-		createAccount.setExpirationDate(LocalDate.parse(input[4]));
-		createAccount.setFavorited(Boolean.parseBoolean(input[5]));
-		createAccount.setUserID(Integer.parseInt(input[6]));
+		createAccount.setUsername(input[0]);
+		createAccount.setEmail(input[1]);
+		createAccount.setPassword(input[2]);
+		createAccount.setWebsiteName(input[3]);
+		createAccount.setCreationDate(LocalDate.parse(input[4]));
+		createAccount.setExpirationDate(LocalDate.parse(input[5]));
+		createAccount.setFavorited(Boolean.parseBoolean(input[6]));
+		createAccount.setUserID(Integer.parseInt(input[7]));
 		
 		
 		return createAccount;
@@ -36,7 +37,7 @@ public class AccountsReader {
 		ArrayList<Account> accs = new ArrayList<Account>();
 		String line;
 		while ((line = csvLineReader.readLine()) != null) {
-			if (Integer.parseInt(line.split(",")[6]) == inputUser.getUserID()) {
+			if (Integer.parseInt(line.split(",")[7]) == inputUser.getUserID()) {
 				accs.add(toAccObj(line.split(",")));
 			}
 		}
