@@ -36,6 +36,8 @@ public class CreateEntryController {
 	@FXML
 	private TextField inputEmail;
 	@FXML
+	private TextField inputExpire;
+	@FXML
 	private Label errorLbl;
 	@FXML
 	public void saveToCSV() {
@@ -46,7 +48,7 @@ public class CreateEntryController {
 		}
 		Account accToAdd = new Account();
 		accToAdd.setCreationDate(LocalDate.now());
-		accToAdd.setExpirationDate(LocalDate.now().plusDays(90));
+		accToAdd.setExpirationDate(LocalDate.now().plusDays(Integer.parseInt(inputExpire.getText())));
 		accToAdd.setEmail(inputEmail.getText());
 		accToAdd.setUsername(inputUser.getText());
 		accToAdd.setFavorited(false);

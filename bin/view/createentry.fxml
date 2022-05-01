@@ -22,6 +22,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label alignment="CENTER" prefHeight="50.0" prefWidth="145.0" text="Website Name:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -36,6 +37,8 @@
             <TextField fx:id="inputWeb" GridPane.columnIndex="1" />
             <Label text="Username:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <TextField fx:id="inputUser" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Expiration Length" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <TextField fx:id="inputExpire" promptText="# of Days" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button fx:id="saveBttn" layoutX="237.0" layoutY="300.0" mnemonicParsing="false" onAction="#saveToCSV" prefHeight="25.0" prefWidth="52.0" text="Save" />
