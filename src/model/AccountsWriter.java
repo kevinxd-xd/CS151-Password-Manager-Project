@@ -13,7 +13,7 @@ public class AccountsWriter {
 	}
 	
 	public String toString(Account accObj) {
-		return accObj.getEmail() + "," + accObj.getPassword() + "," + accObj.getWebsiteName() + "," + accObj.getCreationDate().toString() + "," + accObj.getExpirationDate().toString() + "," + accObj.isFavorited() + "," + accObj.getUserID() + "\n";
+		return accObj.getUsername() + "," + accObj.getEmail() + "," + accObj.getPassword() + "," + accObj.getWebsiteName() + "," + accObj.getCreationDate().toString() + "," + accObj.getExpirationDate().toString() + "," + accObj.isFavorited() + "," + accObj.getUserID() + "\n";
 	}
 	
 	public void write(String inputStr) throws IOException {

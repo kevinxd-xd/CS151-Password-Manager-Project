@@ -34,10 +34,12 @@ public class CreateEntryController {
 	@FXML
 	private PasswordField inputPW;
 	@FXML
+	private TextField inputEmail;
+	@FXML
 	private Label errorLbl;
 	@FXML
 	public void saveToCSV() {
-		if (inputUser.getText().equals("") || inputWeb.getText().equals("") || inputPW.getText().equals("")) {
+		if (inputUser.getText().equals("") || inputWeb.getText().equals("") || inputPW.getText().equals("") || inputEmail.getText().equals("")) {
 			errorLbl.setTextFill(Color.RED);
 			errorLbl.setText("Not all fields are filled!");
 			return;
@@ -45,7 +47,8 @@ public class CreateEntryController {
 		Account accToAdd = new Account();
 		accToAdd.setCreationDate(LocalDate.now());
 		accToAdd.setExpirationDate(LocalDate.now().plusDays(90));
-		accToAdd.setEmail(inputUser.getText());
+		accToAdd.setEmail(inputEmail.getText());
+		accToAdd.setUsername(inputUser.getText());
 		accToAdd.setFavorited(false);
 		accToAdd.setUserID(appInstance.getCurrentUser().getUserID());
 		accToAdd.setWebsiteName(inputWeb.getText());
