@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import model.Account;
 import model.AccountsReader;
 
+//Controls the Home scene and the All Passwords Tab
 public class MainController implements ControllerInterface{
 	
 	private CommonObjs appInstance = CommonObjs.getInstance();

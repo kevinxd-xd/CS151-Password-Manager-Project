@@ -1,13 +1,12 @@
 package application;
 
 import java.util.ArrayList;
-
 import javafx.scene.layout.HBox;
 import model.Account;
 import model.User;
 
+//This is a Singleton instance that will share objects among all the controllers
 public class CommonObjs {
-
 
 	private static CommonObjs appInstance = new CommonObjs();
 	

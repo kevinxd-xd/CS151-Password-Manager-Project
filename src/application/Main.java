@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /*
- * The main class will work to launch the application by initializing the master controller
+ * The main class will launch the application
  */
 public class Main extends Application {
 	

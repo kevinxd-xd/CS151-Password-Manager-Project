@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+//File reader for accounts
 public class AccountsReader {
 	
 	private File inputFile;
@@ -14,8 +14,8 @@ public class AccountsReader {
 	public AccountsReader() {
 		this.inputFile = new File("./resources/data/Accounts.csv");
 	}
-	
-	public Account toAccObj(String[] input) {//adds entered account details to the list of saved accounts
+	//adds entered account details to the list of saved accounts
+	public Account toAccObj(String[] input) {
 		Account createAccount = new Account();
 		createAccount.setEmail(input[0]);
 		createAccount.setPassword(input[1]);
@@ -28,7 +28,7 @@ public class AccountsReader {
 		
 		return createAccount;
 	}
-	
+	//returns ArrayList<Account> of all accounts in inputFile
 	public ArrayList<Account> getAllAccounts(User inputUser) throws IOException {
 		FileReader csvFileReader = new FileReader(this.inputFile);
 		BufferedReader csvLineReader = new BufferedReader(csvFileReader);

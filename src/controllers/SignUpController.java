@@ -14,7 +14,7 @@ import model.User;
 import model.UsersReader;
 import model.UsersWriter;
 
-
+//Controls sign up / create new account logic
 public class SignUpController implements ControllerInterface{
 
 	@FXML
@@ -53,6 +53,7 @@ public class SignUpController implements ControllerInterface{
 	@FXML
 	private CheckBox TOSToggle;
 	@FXML
+	//creates new user account using UsersReader and UsersWriter
 	public void createNewAcc() {
 		if(inputUser.getText().equals("") || inputEmail.getText().equals("") || inputPassword.getText().equals("") || inputRePassword.getText().equals("") || inputSecurityAnswer.getText().equals("") || securityComboBox.getSelectionModel().getSelectedItem() == null) {
 			errLabel.setText("Fields not filled!");
@@ -73,10 +74,12 @@ public class SignUpController implements ControllerInterface{
 			userList = ur.getAllUser();
 			for(User u : userList) {
 				if(u.getEmail().equals(inputEmail.getText())) {
+					//case if email already exists
 					errLabel.setText("Email already exists!");
 					return;
 				}
 				if(u.getUsername().equals(inputUser.getText())) {
+					//case if username already exists
 					errLabel.setText("Username already exists!");
 					return;
 				}
@@ -85,6 +88,7 @@ public class SignUpController implements ControllerInterface{
 			e1.printStackTrace();
 		} 
 		switchScene(createAccBttn, "view/login.fxml");
+		//creates new user and inputs data
 		User newUser = new User();
 		newUser.setUsername(inputUser.getText());
 		newUser.setEmail(inputEmail.getText());
