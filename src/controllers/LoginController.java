@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
 import model.UsersReader;
-
+//Controls login logic
 public class LoginController implements ControllerInterface {
 
 	private CommonObjs appInstance = CommonObjs.getInstance();

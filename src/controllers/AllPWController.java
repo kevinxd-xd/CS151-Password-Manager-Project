@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import model.Account;
 import model.AccountsReader;
 
-
+//Controls the logic behind the All Passwords table
 public class AllPWController {
 	
 	private CommonObjs appInstance = CommonObjs.getInstance();
@@ -53,6 +53,7 @@ public class AllPWController {
 	private TableColumn<Account, String> credEmail;
 	@FXML
 	private TableView<Account> passwordTable;
+	//initializes the table when user clicks on the All Passwords Tab
 	@FXML
 	public void initialize() {
 		updateAccList();
@@ -69,6 +70,7 @@ public class AllPWController {
 	
 	@FXML
 	private Button refreshBttn;
+	//Refreshes all passwords in the table
 	@FXML
 	public void refreshTable() {
 		updateAccList();
@@ -79,6 +81,7 @@ public class AllPWController {
 	
 	@FXML
 	private Button copyBttn;
+	//Copies password to clipboard of the selected row in the table
 	@FXML
 	public void copyToClip() {
 		if (passwordTable.getSelectionModel().getSelectedItem() == null) {

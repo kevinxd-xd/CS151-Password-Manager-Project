@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import model.Account;
 import model.AccountsWriter;
-
+//controls the creating a new account entry in the All Passwords tab
 public class CreateEntryController {
 	
 	private CommonObjs appInstance = CommonObjs.getInstance();
