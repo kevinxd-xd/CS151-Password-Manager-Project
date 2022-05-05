@@ -48,13 +48,15 @@ public class MainController implements ControllerInterface{
         try {
             ArrayList<Account> pass = ar.getAllAccounts(appInstance.getCurrentUser());
 
+            //Iterates through saved passwords to check if any are expired
             for (Account a : pass) {
-                if (a.getExpirationDate().isBefore(LocalDate.now())) {//Iterates through saved passwords to check if any are expired
+                if (a.getExpirationDate().isBefore(LocalDate.now())) {
                     Dialog<String> test = new Dialog<>();
                     DialogPane alertPane = (DialogPane) FXMLLoader
                             .load(getClass().getClassLoader().getResource("view/alert.fxml"));
                     test.setDialogPane(alertPane);
-                    test.show();//displays warning message if a password is expired
+                    test.show();
+                    //displays warning message if a password is expired
                 }
 
             }

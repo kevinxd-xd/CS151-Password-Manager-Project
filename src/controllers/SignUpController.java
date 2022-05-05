@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -25,7 +26,6 @@ public class SignUpController implements ControllerInterface{
 		// Needs to communicate with DAO for list of questions, this is a hard code basically
 		securityComboBox.getItems().addAll("What is your favorite color?", "What was your first car?", "What was the name of your favorite teacher?");
 	}
-	
 	
 	/*
 	 * This method will display the login page if the back button is pushed
@@ -90,9 +90,10 @@ public class SignUpController implements ControllerInterface{
 		switchScene(createAccBttn, "view/login.fxml");
 		//creates new user and inputs data
 		User newUser = new User();
+		PassUtil pwUtil = new PassUtil();
 		newUser.setUsername(inputUser.getText());
 		newUser.setEmail(inputEmail.getText());
-		newUser.setPassword(inputPassword.getText());
+		newUser.setPassword(pwUtil.encrypt(inputPassword.getText()));
 		newUser.setQuestion(securityComboBox.getSelectionModel().getSelectedItem());
 		newUser.setQuestionAnswer(inputSecurityAnswer.getText());
 		newUser.setUserID(newUser.hashCode());

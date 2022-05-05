@@ -3,6 +3,7 @@ package controllers;
 import java.util.ArrayList;
 
 import application.CommonObjs;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -34,7 +35,8 @@ public class LoginController implements ControllerInterface {
 			ArrayList<User> acc = ur.getAllUser();
 			for (User a : acc) {//Verifies entered login info matches stored credentials
 				if (a.getUsername().equals(username)) {
-					if (a.getPassword().equals(password)) {
+					PassUtil pwUtil = new PassUtil();
+					if (pwUtil.decrypt(a.getPassword()).equals(password)) {
 						appInstance.setCurrentUser(a);
 						switchScene(loginBttn, "view/main.fxml");
 					}

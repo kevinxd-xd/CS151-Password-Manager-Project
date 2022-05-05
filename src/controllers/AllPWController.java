@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 
 import application.CommonObjs;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -87,12 +89,19 @@ public class AllPWController {
 		if (passwordTable.getSelectionModel().getSelectedItem() == null) {
 			return;
 		}
-		String pwSelected = passwordTable.getSelectionModel().getSelectedItem().getPassword();
+		PassUtil pwUtil = new PassUtil();
+		String pwSelected = pwUtil.decrypt(passwordTable.getSelectionModel().getSelectedItem().getPassword())  ;
 		final Clipboard clip = Clipboard.getSystemClipboard();
 		final ClipboardContent pwContent = new ClipboardContent();
 		pwContent.putString(pwSelected);
 		clip.setContent(pwContent);
-		
+	}
+	
+	@FXML
+	private TextField searchBar;
+	@FXML
+	public void filterList() {
+		// Search algorithm pulling each selection model and then checking contents with contains
 	}
 	
 	/*

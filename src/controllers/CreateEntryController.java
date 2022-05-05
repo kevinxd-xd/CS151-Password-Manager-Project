@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import application.CommonObjs;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -46,6 +47,7 @@ public class CreateEntryController {
 			errorLbl.setText("Not all fields are filled!");
 			return;
 		}
+		PassUtil pwUtil = new PassUtil();
 		Account accToAdd = new Account();
 		accToAdd.setCreationDate(LocalDate.now());
 		accToAdd.setExpirationDate(LocalDate.now().plusDays(Integer.parseInt(inputExpire.getText())));
@@ -54,7 +56,7 @@ public class CreateEntryController {
 		accToAdd.setFavorited(false);
 		accToAdd.setUserID(appInstance.getCurrentUser().getUserID());
 		accToAdd.setWebsiteName(inputWeb.getText());
-		accToAdd.setPassword(inputPW.getText());
+		accToAdd.setPassword(pwUtil.encrypt(inputPW.getText()));
 		
 		AccountsWriter aw = new AccountsWriter();
 		try {
