@@ -2,3 +2,5 @@
 /.settings
 /.classpath
 /.project
+/resources/data/Users.csv
+/resources/data/Accounts.csv
