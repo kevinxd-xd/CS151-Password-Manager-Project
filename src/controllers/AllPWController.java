@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -32,7 +33,7 @@ public class AllPWController {
 		try {
 			Pane pwPane = (Pane)FXMLLoader.load(getClass().getClassLoader().getResource("view/createentry.fxml"));
 			Stage accStage = new Stage();
-			Scene addScene = new Scene(pwPane, 330, 350);
+			Scene addScene = new Scene(pwPane, 330, 400);
 			accStage.setScene(addScene);
 			accStage.show();
 		}
@@ -55,6 +56,8 @@ public class AllPWController {
 	private TableColumn<Account, String> credEmail;
 	@FXML
 	private TableView<Account> passwordTable;
+	@FXML
+	private Label statusLbl;
 	//initializes the table when user clicks on the All Passwords Tab
 	@FXML
 	public void initialize() {
@@ -67,7 +70,6 @@ public class AllPWController {
 		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expirationDate"));
 		credPW.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
 		passwordTable.setItems(list);
-		
 	}
 	
 	@FXML
@@ -78,6 +80,7 @@ public class AllPWController {
 		updateAccList();
 		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
 		passwordTable.setItems(list);
+		statusLbl.setText("Status: List Refreshed!");
 	}
 	
 	
@@ -95,6 +98,7 @@ public class AllPWController {
 		final ClipboardContent pwContent = new ClipboardContent();
 		pwContent.putString(pwSelected);
 		clip.setContent(pwContent);
+		statusLbl.setText("Status: Copied to clipboard!");
 	}
 	
 	@FXML

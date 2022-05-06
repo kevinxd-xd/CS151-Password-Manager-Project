@@ -50,7 +50,7 @@ public class MainController implements ControllerInterface{
 
             //Iterates through saved passwords to check if any are expired
             for (Account a : pass) {
-                if (a.getExpirationDate().isBefore(LocalDate.now())) {
+                if (a.getExpirationDate().isBefore(LocalDate.now()) || a.getExpirationDate().equals(LocalDate.now())) {
                     Dialog<String> test = new Dialog<>();
                     DialogPane alertPane = (DialogPane) FXMLLoader
                             .load(getClass().getClassLoader().getResource("view/alert.fxml"));
