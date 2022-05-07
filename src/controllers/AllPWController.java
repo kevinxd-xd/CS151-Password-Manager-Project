@@ -136,17 +136,21 @@ public class AllPWController {
 	}
 	@FXML
 	private Button deleteBttn;
+	//Deletes account depending on selected row in the table
 	@FXML
 	public void delete() throws IOException {
-		
-
 		Account acc = passwordTable.getSelectionModel().getSelectedItem();
-
 		//deletes TempAccounts.csv to refresh contents
 		new File("./resources/data/TempAccounts.csv").getAbsoluteFile().delete();
 		AccountsWriter aw = new AccountsWriter();
-		//writes to TempAccounts.csv
+		//writes to TempAccounts.csv or makes new Accounts file if only one account remains
 		ArrayList<Account> accountList = appInstance.getAccountList();
+		if (accountList.size() == 1) {
+			String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
+			new File(abs).delete();
+			new File(abs).createNewFile();
+			return;
+		}
 		for(Account a : accountList) {
 			if(!a.equals(acc)) {
 				aw.writeTemp(aw.toString(a));
