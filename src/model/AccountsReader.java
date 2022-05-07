@@ -29,7 +29,7 @@ public class AccountsReader {
 		
 		return createAccount;
 	}
-	//returns ArrayList<Account> of all accounts in inputFile
+	//returns ArrayList<Account> of all accounts associated with a user in inputFile
 	public ArrayList<Account> getAllAccounts(User inputUser) throws IOException {
 		FileReader csvFileReader = new FileReader(this.inputFile);
 		BufferedReader csvLineReader = new BufferedReader(csvFileReader);
@@ -45,6 +45,8 @@ public class AccountsReader {
 		csvFileReader.close();
 		return accs;
 	}
+	
+	//returns ArrayList<Account> of all accounts in file
 	public ArrayList<Account> getAllAccounts() throws IOException {
 		FileReader csvFileReader = new FileReader(this.inputFile);
 		BufferedReader csvLineReader = new BufferedReader(csvFileReader);
