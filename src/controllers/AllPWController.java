@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,6 +23,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Account;
 import model.AccountsReader;
+import model.AccountsWriter;
+import model.User;
+import model.UsersReader;
+import model.UsersWriter;
 
 //Controls the logic behind the All Passwords table
 public class AllPWController {
@@ -129,6 +134,31 @@ public class AllPWController {
         //Sets the visible password list to the ones containing the searched term
         passwordTable.setItems(filteredList);
 	}
+	@FXML
+	private Button deleteBttn;
+	@FXML
+	public void delete() throws IOException {
+		
+
+		Account acc = passwordTable.getSelectionModel().getSelectedItem();
+
+		//deletes TempAccounts.csv to refresh contents
+		new File("./resources/data/TempAccounts.csv").getAbsoluteFile().delete();
+		AccountsWriter aw = new AccountsWriter();
+		//writes to TempAccounts.csv
+		ArrayList<Account> accountList = appInstance.getAccountList();
+		for(Account a : accountList) {
+			if(!a.equals(acc)) {
+				aw.writeTemp(aw.toString(a));
+			}
+		}
+		//writes in new password for user
+		String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
+		new File(abs).delete();
+		aw.getInputFile().renameTo(new File(abs));
+	}
+	
+	
 	
 	/*
 	 * Method to grab the latest csv file for accounts
