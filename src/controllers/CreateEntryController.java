@@ -6,6 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import application.CommonObjs;
 import edu.sjsu.yazdankhah.crypto.util.PassUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import model.Account;
+import model.AccountsReader;
 import model.AccountsWriter;
 //controls the creating a new account entry in the All Passwords tab
 public class CreateEntryController {
@@ -71,6 +74,16 @@ public class CreateEntryController {
 			}
 			
 			saveBttn.getScene().getWindow().hide();
+			
+			try {
+				AccountsReader ar = new AccountsReader();
+				ObservableList<Account> list = FXCollections.observableArrayList(ar.getAllAccounts(appInstance.getCurrentUser()));
+				appInstance.getPasswordTable().setItems(list);
+				appInstance.getStatusLbl().setText("Status: Successfully added new entry!");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -133,8 +146,6 @@ public class CreateEntryController {
         	}
         }
         
-        System.out.println("Length of pw: " + randPass.toString().length());
-        System.out.println("Password: " + randPass.toString());
         return randPass.toString();
 	}
 	

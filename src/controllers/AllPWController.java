@@ -64,6 +64,8 @@ public class AllPWController {
 	//initializes the table when user clicks on the All Passwords Tab
 	@FXML
 	public void initialize() {
+		appInstance.setPasswordTable(passwordTable);
+		appInstance.setStatusLbl(statusLbl);
 		updateAccList();
 		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
 		credEmail.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));

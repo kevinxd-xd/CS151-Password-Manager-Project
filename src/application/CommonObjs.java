@@ -1,6 +1,10 @@
 package application;
 
 import java.util.ArrayList;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import model.Account;
 import model.User;
@@ -14,8 +18,12 @@ public class CommonObjs {
 	private HBox mainBox;
 	private User currentUser;
 	private ArrayList<Account> accountList;
+	@FXML
+	private TableView<Account> passwordTable;
+	@FXML
+	private Label statusLbl;
 	
-	
+
 	private CommonObjs() {}
 	
 	public static CommonObjs getInstance() {
@@ -44,6 +52,22 @@ public class CommonObjs {
 
 	public void setAccountList(ArrayList<Account> accountList) {
 		this.accountList = accountList;
+	}
+	
+	public TableView<Account> getPasswordTable() {
+		return passwordTable;
+	}
+
+	public void setPasswordTable(TableView<Account> passwordTable) {
+		this.passwordTable = passwordTable;
+	}
+
+	public Label getStatusLbl() {
+		return statusLbl;
+	}
+
+	public void setStatusLbl(Label statusLbl) {
+		this.statusLbl = statusLbl;
 	}
 	
 	

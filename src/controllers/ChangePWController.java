@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import application.CommonObjs;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -54,7 +55,8 @@ public class ChangePWController implements ControllerInterface{
 			}
 			//writes in new password for user
 			User u = appInstance.getCurrentUser();
-			u.setPassword(inputPassword.getText());
+			PassUtil pwUtil = new PassUtil();
+			u.setPassword(pwUtil.encrypt(inputPassword.getText()));
 			uw.writeTemp(uw.toString(u));
 			String abs = new File("./resources/data/Users.csv").getAbsolutePath();
 			new File(abs).delete();
