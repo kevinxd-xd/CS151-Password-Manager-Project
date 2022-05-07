@@ -147,16 +147,16 @@ public class AllPWController {
 			//deletes TempAccounts.csv to refresh contents
 			new File("./resources/data/TempAccounts.csv").getAbsoluteFile().delete();
 			AccountsWriter aw = new AccountsWriter();
+			AccountsReader ar = new AccountsReader();
 			//writes to TempAccounts.csv or makes new Accounts file if only one account remains
-			ArrayList<Account> accountList = appInstance.getAccountList();
-			//BUG HERE
-			if (accountList.size() == 1) {
+			ArrayList<Account> allAccounts = ar.getAllAccounts();
+			if (allAccounts.size() == 1) {
 				String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
 				new File(abs).delete();
 				new File(abs).createNewFile();
 			}
 			else {
-				for(Account a : accountList) {
+				for(Account a : allAccounts) {
 					if(!a.equals(acc)) {
 						aw.writeTemp(aw.toString(a));
 					}

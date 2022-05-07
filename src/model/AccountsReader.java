@@ -45,4 +45,17 @@ public class AccountsReader {
 		csvFileReader.close();
 		return accs;
 	}
+	public ArrayList<Account> getAllAccounts() throws IOException {
+		FileReader csvFileReader = new FileReader(this.inputFile);
+		BufferedReader csvLineReader = new BufferedReader(csvFileReader);
+		
+		ArrayList<Account> accs = new ArrayList<Account>();
+		String line;
+		while ((line = csvLineReader.readLine()) != null) {
+			accs.add(toAccObj(line.split(",")));
+		}
+		csvLineReader.close();
+		csvFileReader.close();
+		return accs;
+	}
 }
