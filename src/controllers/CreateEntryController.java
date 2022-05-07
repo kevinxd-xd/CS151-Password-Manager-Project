@@ -106,7 +106,7 @@ public class CreateEntryController {
         	randPass.append(regChars[randomNum]);
         }
         
-        //Insert Random Capital
+        //Insert random capital letter into random position
         for (int i = 0; i < capChars; i++) {
         	int currentLenPass = randPass.toString().length();
         	char randomCaptial = (char)(ThreadLocalRandom.current().nextInt(25) + 65);
@@ -119,7 +119,7 @@ public class CreateEntryController {
         	}
         }
         
-        //Insert Random Spec
+        //Insert random special character into random position
         for (int i = 0; i < specChars; i++) {
         	int currentLenPass = randPass.toString().length() - 1;
         	int randIndex = ThreadLocalRandom.current().nextInt(specialChars.length);
@@ -168,7 +168,7 @@ public class CreateEntryController {
 			errorLbl.setText("Some fields are not filled correctly!");
 			return false;
 		}
-		if (Integer.parseInt(inputMax.getText()) < Integer.parseInt(inputSpec.getText()) + Integer.parseInt(inputCap.getText())) {
+		if ((Integer.parseInt(inputMax.getText()) < Integer.parseInt(inputSpec.getText()) + Integer.parseInt(inputCap.getText())) || (Integer.parseInt(inputMin.getText()) > Integer.parseInt(inputMax.getText()))) {
 			errorLbl.setTextFill(Color.RED);
 			errorLbl.setText("Some fields are not filled correctly!");
 			return false;

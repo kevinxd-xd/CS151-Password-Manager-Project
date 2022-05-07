@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import application.CommonObjs;
 import edu.sjsu.yazdankhah.crypto.util.PassUtil;
@@ -105,7 +106,28 @@ public class AllPWController {
 	private TextField searchBar;
 	@FXML
 	public void filterList() {
-		// Search algorithm pulling each selection model and then checking contents with contains
+        // Search algorithm pulling each selection model and then checking contents with
+        // contains
+        AccountsReader ar = new AccountsReader();
+        
+        String searchEntry = searchBar.getText();
+        ArrayList<Account> filteredAccs = new ArrayList<>();
+        try {
+            ArrayList<Account> accs = ar.getAllAccounts(appInstance.getCurrentUser());
+            
+            for (Account a : accs) {
+            	//searches database for search entry
+                if (a.getWebsiteName().contains(searchEntry) || a.getUsername().contains(searchEntry)) {
+                        filteredAccs.add(a);           
+                } 
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        ObservableList<Account> filteredList = FXCollections.observableArrayList(filteredAccs);
+        //Sets the visible password list to the ones containing the searched term
+        passwordTable.setItems(filteredList);
 	}
 	
 	/*
