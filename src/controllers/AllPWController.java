@@ -24,9 +24,6 @@ import javafx.stage.Stage;
 import model.Account;
 import model.AccountsReader;
 import model.AccountsWriter;
-import model.User;
-import model.UsersReader;
-import model.UsersWriter;
 
 //Controls the logic behind the All Passwords table
 public class AllPWController {
@@ -96,6 +93,7 @@ public class AllPWController {
 	@FXML
 	public void copyToClip() {
 		if (passwordTable.getSelectionModel().getSelectedItem() == null) {
+			statusLbl.setText("Status: Please select an entry to copy a password from");
 			return;
 		}
 		PassUtil pwUtil = new PassUtil();
@@ -138,28 +136,43 @@ public class AllPWController {
 	private Button deleteBttn;
 	//Deletes account depending on selected row in the table
 	@FXML
-	public void delete() throws IOException {
-		Account acc = passwordTable.getSelectionModel().getSelectedItem();
-		//deletes TempAccounts.csv to refresh contents
-		new File("./resources/data/TempAccounts.csv").getAbsoluteFile().delete();
-		AccountsWriter aw = new AccountsWriter();
-		//writes to TempAccounts.csv or makes new Accounts file if only one account remains
-		ArrayList<Account> accountList = appInstance.getAccountList();
-		if (accountList.size() == 1) {
-			String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
-			new File(abs).delete();
-			new File(abs).createNewFile();
+	public void delete()  {
+		if (passwordTable.getSelectionModel().getSelectedItem() == null) {
+			statusLbl.setText("Status: Please select an entry to delete");
 			return;
 		}
-		for(Account a : accountList) {
-			if(!a.equals(acc)) {
-				aw.writeTemp(aw.toString(a));
+		
+		try {
+			Account acc = passwordTable.getSelectionModel().getSelectedItem();
+			//deletes TempAccounts.csv to refresh contents
+			new File("./resources/data/TempAccounts.csv").getAbsoluteFile().delete();
+			AccountsWriter aw = new AccountsWriter();
+			//writes to TempAccounts.csv or makes new Accounts file if only one account remains
+			ArrayList<Account> accountList = appInstance.getAccountList();
+			//BUG HERE
+			if (accountList.size() == 1) {
+				String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
+				new File(abs).delete();
+				new File(abs).createNewFile();
 			}
+			else {
+				for(Account a : accountList) {
+					if(!a.equals(acc)) {
+						aw.writeTemp(aw.toString(a));
+					}
+				}
+				//writes in new password for user
+				String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
+				new File(abs).delete();
+				aw.getInputFile().renameTo(new File(abs));
+			}
+			
 		}
-		//writes in new password for user
-		String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
-		new File(abs).delete();
-		aw.getInputFile().renameTo(new File(abs));
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		refreshTable();
+		statusLbl.setText("Status: Successfully deleted!");
 	}
 	
 	
