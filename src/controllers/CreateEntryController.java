@@ -1,7 +1,10 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import application.CommonObjs;
@@ -11,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import model.Account;
@@ -21,11 +23,36 @@ import model.AccountsWriter;
 public class CreateEntryController {
 	
 	private CommonObjs appInstance = CommonObjs.getInstance();
+	private boolean inEditMode;
+	private Account editableAcc;
+	private Account accToAdd;
+	
+	
+	@FXML
+	public void initialize() {
+		inEditMode = false;
+		Account accountEdit = appInstance.getAccToEdit();
+		if (accountEdit != null) {
+			inputWeb.setText(accountEdit.getWebsiteName());
+			inputUser.setText(accountEdit.getUsername());
+			PassUtil pwUtil = new PassUtil();
+			inputPW.setText(pwUtil.decrypt(accountEdit.getPassword()));
+			inputEmail.setText(accountEdit.getEmail());
+			inputExpire.setText(String.valueOf(ChronoUnit.DAYS.between(LocalDate.now(), accountEdit.getExpirationDate())));
+			inEditMode = true;
+			editableAcc = accountEdit;
+			appInstance.setAccToEdit(null);
+		}
+		else {
+			editableAcc = null;
+		}
+	}
 	
 	@FXML
 	private Button cancelBttn;
 	@FXML
 	public void closeWindow() {
+		appInstance.setAccToEdit(null);
 		cancelBttn.getScene().getWindow().hide();
 	}
 	
@@ -37,7 +64,7 @@ public class CreateEntryController {
 	@FXML
 	private TextField inputUser;
 	@FXML
-	private PasswordField inputPW;
+	private TextField inputPW;
 	@FXML
 	private TextField inputEmail;
 	@FXML
@@ -52,11 +79,14 @@ public class CreateEntryController {
 	private TextField inputMax;
 	@FXML
 	private Label errorLbl;
+	/*
+	 * Saves entry to the csv file, will either edit or add new entry depending on the conditons
+	 */
 	@FXML
 	public void saveToCSV() {
 		if (validateFields()) {
 			PassUtil pwUtil = new PassUtil();
-			Account accToAdd = new Account();
+			this.accToAdd = new Account();
 			accToAdd.setCreationDate(LocalDate.now());
 			accToAdd.setExpirationDate(LocalDate.now().plusDays(Integer.parseInt(inputExpire.getText())));
 			accToAdd.setEmail(inputEmail.getText());
@@ -65,26 +95,54 @@ public class CreateEntryController {
 			accToAdd.setUserID(appInstance.getCurrentUser().getUserID());
 			accToAdd.setWebsiteName(inputWeb.getText());
 			accToAdd.setPassword(pwUtil.encrypt(inputPW.getText()));
-			
+		}
+		
+		if (!this.accToAdd.equals(this.editableAcc)) {
 			AccountsWriter aw = new AccountsWriter();
 			try {
 				aw.write(aw.toString(accToAdd));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			saveBttn.getScene().getWindow().hide();
-			
-			try {
-				AccountsReader ar = new AccountsReader();
-				ObservableList<Account> list = FXCollections.observableArrayList(ar.getAllAccounts(appInstance.getCurrentUser()));
-				appInstance.getPasswordTable().setItems(list);
 				appInstance.getStatusLbl().setText("Status: Successfully added new entry!");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
+		
+		if (inEditMode && !this.accToAdd.equals(this.editableAcc)) {
+			try {
+				Account acc = editableAcc;
+				//deletes TempAccounts.csv to refresh contents
+				new File("./resources/data/TempAccounts.csv").getAbsoluteFile().delete();
+				AccountsWriter aw = new AccountsWriter();
+				AccountsReader ar = new AccountsReader();
+				ArrayList<Account> allAccounts = ar.getAllAccounts();
+				for(Account a : allAccounts) {
+					if(!a.equals(acc)) {
+						aw.writeTemp(aw.toString(a));
+					}
+				}
+				//writes in new password for user
+				String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
+				new File(abs).delete();
+				aw.getInputFile().renameTo(new File(abs));
+				appInstance.getStatusLbl().setText("Status: Successfully edited entry!");
+				
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//Refresh the list after an edit or new entry
+		try {
+			AccountsReader ar = new AccountsReader();
+			ObservableList<Account> list = FXCollections.observableArrayList(ar.getAllAccounts(appInstance.getCurrentUser()));
+			appInstance.getPasswordTable().setItems(list);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		saveBttn.getScene().getWindow().hide();
 	}
 	
 	// Validates the fields, generates the password, and fills in the textbox
@@ -154,6 +212,15 @@ public class CreateEntryController {
 		if (inputUser.getText().equals("") || inputWeb.getText().equals("") || inputPW.getText().equals("") || inputEmail.getText().equals("") || inputExpire.getText().equals("")) {
 			errorLbl.setTextFill(Color.RED);
 			errorLbl.setText("Not all fields are filled!");
+			return false;
+		}
+		try {
+			Integer.parseInt(inputExpire.getText());
+			errorLbl.setText("");
+		}
+		catch(Exception e) {
+			errorLbl.setTextFill(Color.RED);
+			errorLbl.setText("Expiration date must be a number!");
 			return false;
 		}
 		errorLbl.setText("");

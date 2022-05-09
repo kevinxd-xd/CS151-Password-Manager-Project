@@ -22,6 +22,7 @@ public class CommonObjs {
 	private TableView<Account> passwordTable;
 	@FXML
 	private Label statusLbl;
+	private Account accToEdit;
 	
 
 	private CommonObjs() {}
@@ -68,6 +69,14 @@ public class CommonObjs {
 
 	public void setStatusLbl(Label statusLbl) {
 		this.statusLbl = statusLbl;
+	}
+
+	public Account getAccToEdit() {
+		return accToEdit;
+	}
+
+	public void setAccToEdit(Account accToEdit) {
+		this.accToEdit = accToEdit;
 	}
 	
 	

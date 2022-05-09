@@ -20,7 +20,7 @@
             <TableColumn fx:id="credPW" prefWidth="135.0" text="Password" />
         </columns>
       </TableView>
-      <Button fx:id="refreshBttn" layoutX="555.0" layoutY="46.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="97.0" text="Refresh" />
+      <Button fx:id="editBttn" layoutX="555.0" layoutY="46.0" mnemonicParsing="false" onAction="#editEntry" prefHeight="25.0" prefWidth="97.0" text="Edit" />
       <Button fx:id="copyBttn" layoutX="417.0" layoutY="46.0" mnemonicParsing="false" onAction="#copyToClip" prefHeight="25.0" prefWidth="118.0" text="Copy to Clipboard" />
       <TextField fx:id="searchBar" layoutX="33.0" layoutY="46.0" onAction="#filterList" prefHeight="25.0" prefWidth="235.0" promptText="Search" />
       <Button fx:id="deleteBttn" layoutX="282.0" layoutY="46.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="118.0" text="Delete" />

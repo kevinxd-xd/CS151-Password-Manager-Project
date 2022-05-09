@@ -66,6 +66,7 @@ public class AllPWController {
 	public void initialize() {
 		appInstance.setPasswordTable(passwordTable);
 		appInstance.setStatusLbl(statusLbl);
+		appInstance.setAccToEdit(null);
 		updateAccList();
 		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
 		credEmail.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
@@ -75,17 +76,6 @@ public class AllPWController {
 		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expirationDate"));
 		credPW.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
 		passwordTable.setItems(list);
-	}
-	
-	@FXML
-	private Button refreshBttn;
-	//Refreshes all passwords in the table
-	@FXML
-	public void refreshTable() {
-		updateAccList();
-		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
-		passwordTable.setItems(list);
-		statusLbl.setText("Status: List Refreshed!");
 	}
 	
 	
@@ -134,6 +124,8 @@ public class AllPWController {
         //Sets the visible password list to the ones containing the searched term
         passwordTable.setItems(filteredList);
 	}
+	
+	
 	@FXML
 	private Button deleteBttn;
 	//Deletes account depending on selected row in the table
@@ -177,18 +169,47 @@ public class AllPWController {
 		statusLbl.setText("Status: Successfully deleted!");
 	}
 	
-	
+	@FXML
+	private Button editBttn;
+	@FXML
+	public void editEntry() {
+		try {
+			if (passwordTable.getSelectionModel().getSelectedItem() == null) {
+				statusLbl.setText("Status: Please select an entry to edit");
+				return;
+			}
+			appInstance.setAccToEdit(passwordTable.getSelectionModel().getSelectedItem());
+			Pane pwPane = (Pane)FXMLLoader.load(getClass().getClassLoader().getResource("view/createentry.fxml"));
+			Stage accStage = new Stage();
+			Scene addScene = new Scene(pwPane, 330, 400);
+			accStage.setScene(addScene);
+			accStage.show();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/*
 	 * Method to grab the latest csv file for accounts
 	 */
-	public void updateAccList() {
+	private void updateAccList() {
 		AccountsReader ar = new AccountsReader();
 		try {
 			appInstance.setAccountList(ar.getAllAccounts(appInstance.getCurrentUser()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/*
+	 * Refreshes the table view of passwords
+	 */
+	private void refreshTable() {
+		updateAccList();
+		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
+		passwordTable.setItems(list);
+		statusLbl.setText("Status: List Refreshed!");
 	}
 	
 }
