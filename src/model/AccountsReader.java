@@ -25,6 +25,7 @@ public class AccountsReader {
 		createAccount.setExpirationDate(LocalDate.parse(input[5]));
 		createAccount.setFavorited(Boolean.parseBoolean(input[6]));
 		createAccount.setUserID(Integer.parseInt(input[7]));
+		createAccount.setAccID(input[8]);
 		
 		
 		return createAccount;

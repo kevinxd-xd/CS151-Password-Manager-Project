@@ -95,6 +95,7 @@ public class CreateEntryController {
 			accToAdd.setUserID(appInstance.getCurrentUser().getUserID());
 			accToAdd.setWebsiteName(inputWeb.getText());
 			accToAdd.setPassword(pwUtil.encrypt(inputPW.getText()));
+			accToAdd.setAccID(genID());
 		}
 		
 		if (!this.accToAdd.equals(this.editableAcc)) {
@@ -156,6 +157,24 @@ public class CreateEntryController {
 	}
 	
 	
+	//93 + 33;
+	// Generates a random string as a ID for each entry
+	private String genID() {
+		//Password generator algorithm
+       
+        StringBuilder randID = new StringBuilder();
+        int baseLength = 15;
+        
+        // Generate base string with regular lowercase letters and numbers
+        for (int i = 0; i < baseLength; i++) {
+        	char randomChar = (char)(ThreadLocalRandom.current().nextInt(33) + 93);
+        	randID.append(randomChar);
+        }
+
+        
+        return randID.toString();
+	}
+	
 	// Generates a random string of characters
 	private String genPass(int minLen, int maxLen, int specChars, int capChars) {
 		//Password generator algorithm
@@ -199,7 +218,7 @@ public class CreateEntryController {
         		randPass.append(randomSpecial);
         	}
         	else {
-            	int insertAt = ThreadLocalRandom.current().nextInt(currentLenPass- 1);
+            	int insertAt = ThreadLocalRandom.current().nextInt(currentLenPass - 1);
             	randPass.insert(insertAt , randomSpecial);
         	}
         }

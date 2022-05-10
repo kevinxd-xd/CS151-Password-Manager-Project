@@ -13,7 +13,7 @@ public class AccountsWriter {
 	}
 	//converts accountObj csv form
 	public String toString(Account accObj) {
-		return accObj.getUsername() + "," + accObj.getEmail() + "," + accObj.getPassword() + "," + accObj.getWebsiteName() + "," + accObj.getCreationDate().toString() + "," + accObj.getExpirationDate().toString() + "," + accObj.isFavorited() + "," + accObj.getUserID() + "\n";
+		return accObj.getUsername() + "," + accObj.getEmail() + "," + accObj.getPassword() + "," + accObj.getWebsiteName() + "," + accObj.getCreationDate().toString() + "," + accObj.getExpirationDate().toString() + "," + accObj.isFavorited() + "," + accObj.getUserID() + "," + accObj.getAccID() + "\n";
 	}
 	//writes inputStr to the inputFile
 	public void write(String inputStr) throws IOException {

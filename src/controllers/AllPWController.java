@@ -169,6 +169,9 @@ public class AllPWController {
 		statusLbl.setText("Status: Successfully deleted!");
 	}
 	
+	/*
+	 * Opens the edit tab for the specified entry
+	 */
 	@FXML
 	private Button editBttn;
 	@FXML

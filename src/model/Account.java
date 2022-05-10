@@ -11,6 +11,7 @@ public class Account {
 	private LocalDate expirationDate;
 	private boolean favorited;
 	private int userID;
+	private String accID;
 	
 	public Account() {}
 	
@@ -67,10 +68,19 @@ public class Account {
 		this.username = username;
 	}
 
+	public String getAccID() {
+		return accID;
+	}
+
+	public void setAccID(String accID) {
+		this.accID = accID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((accID == null) ? 0 : accID.hashCode());
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((expirationDate == null) ? 0 : expirationDate.hashCode());
@@ -91,6 +101,11 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
+		if (accID == null) {
+			if (other.accID != null)
+				return false;
+		} else if (!accID.equals(other.accID))
+			return false;
 		if (creationDate == null) {
 			if (other.creationDate != null)
 				return false;
@@ -127,6 +142,5 @@ public class Account {
 			return false;
 		return true;
 	}
-	
 	
 }
