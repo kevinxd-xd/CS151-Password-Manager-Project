@@ -18,6 +18,7 @@ public class SecurityQController implements ControllerInterface{
 	private TextField inputAnswer;
 	@FXML
 	private Label errLabel;
+	// Switches to the forgot password screen
 	@FXML
 	public void showForgot() {
 		switchScene(backBttn, "view/forgot.fxml");
@@ -25,7 +26,7 @@ public class SecurityQController implements ControllerInterface{
 	@FXML
 	private Button checkAns;
 	@FXML
-	//verifies the questionAnswer for the user
+	// verifies the questionAnswer for the user
 	public void showChangePW() {
 		if(appInstance.getCurrentUser().getQuestionAnswer().equals(inputAnswer.getText()))
 			switchScene(checkAns,"view/changepw.fxml");
@@ -35,10 +36,10 @@ public class SecurityQController implements ControllerInterface{
 			return;
 		}
 	}
-	//loads question when this becomes the scene
+	// loads question when this becomes the scene
 	@FXML
 	public void initialize() {
 		questionLabel.setText(appInstance.getCurrentUser().getQuestion());
-		//load question from database
+		// load question from database
 	}
 }

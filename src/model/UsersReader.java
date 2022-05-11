@@ -14,7 +14,7 @@ public class UsersReader {
 		this.inputFile = new File("./resources/data/Users.csv");
 	}
 	
-	//retrieves user entered username, email, and security details 
+	// retrieves user entered username, email, and security details 
 	public User toUserObj(String[] input) {
 		User createUser = new User();
 		createUser.setUsername(input[0]);
@@ -26,7 +26,7 @@ public class UsersReader {
 		
 		return createUser;
 	}
-	//returns ArrayList<User> of all users in inputFile
+	// returns ArrayList<User> of all users in inputFile
 	public ArrayList<User> getAllUser() throws IOException {
 		FileReader csvFileReader = new FileReader(this.inputFile);
 		BufferedReader csvLineReader = new BufferedReader(csvFileReader);

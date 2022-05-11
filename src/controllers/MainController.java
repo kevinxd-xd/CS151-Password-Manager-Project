@@ -15,14 +15,13 @@ import javafx.scene.layout.HBox;
 import model.Account;
 import model.AccountsReader;
 
-//Controls the Home scene and the All Passwords Tab
+// Controls the Home scene and the All Passwords Tab
 public class MainController implements ControllerInterface{
 	
 	private CommonObjs appInstance = CommonObjs.getInstance();
 	
-	/*
-	 * Method to change pane showing in main
-	 */
+
+	// Method to change pane showing in main
 	private void changePane(String fxmlPath) {
 		try {
 			AnchorPane newPane = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource(fxmlPath));
@@ -40,6 +39,7 @@ public class MainController implements ControllerInterface{
 
 	@FXML
 	private HBox appMainBox;
+	// Initializes the fields in the singleton instance and loads the home page
 	@FXML
 	public void initialize() {
 		appInstance.setMainBox(appMainBox);
@@ -48,7 +48,7 @@ public class MainController implements ControllerInterface{
         try {
             ArrayList<Account> pass = ar.getAllAccounts(appInstance.getCurrentUser());
 
-            //Iterates through saved passwords to check if any are expired
+            // Iterates through saved passwords to check if any are expired
             for (Account a : pass) {
                 if (a.getExpirationDate().isBefore(LocalDate.now()) || a.getExpirationDate().equals(LocalDate.now())) {
                     Dialog<String> test = new Dialog<>();
@@ -56,7 +56,7 @@ public class MainController implements ControllerInterface{
                             .load(getClass().getClassLoader().getResource("view/alert.fxml"));
                     test.setDialogPane(alertPane);
                     test.show();
-                    //displays warning message if a password is expired
+                    // displays warning message if a password is expired
                 }
 
             }
@@ -72,6 +72,7 @@ public class MainController implements ControllerInterface{
 		}
 	}
 	
+	// Shows home screen
 	@FXML
 	private Button homeBttn;
 	@FXML
@@ -79,6 +80,7 @@ public class MainController implements ControllerInterface{
 		changePane("view/homepage.fxml");
 	}
 	
+	// Shows all passwords screen
 	@FXML
 	private Button allPWBttn;
 	@FXML
@@ -86,10 +88,12 @@ public class MainController implements ControllerInterface{
 		changePane("view/allpwpage.fxml");
 	}
 	
+	// Logs out the client and resets the current user to null
 	@FXML
 	private Button logoutBttn;
 	@FXML
 	public void logout() {
+		appInstance.setCurrentUser(null);
 		switchScene(logoutBttn, "view/login.fxml");
 	}
 

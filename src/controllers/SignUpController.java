@@ -15,7 +15,7 @@ import model.User;
 import model.UsersReader;
 import model.UsersWriter;
 
-//Controls sign up / create new account logic
+// Controls sign up / create new account logic
 public class SignUpController implements ControllerInterface{
 
 	@FXML
@@ -27,9 +27,7 @@ public class SignUpController implements ControllerInterface{
 		securityComboBox.getItems().addAll("What is your favorite color?", "What was your first car?", "What was the name of your favorite teacher?");
 	}
 	
-	/*
-	 * This method will display the login page if the back button is pushed
-	 */
+	// This method will display the login page if the back button is pushed
 	@FXML
 	private Button backBttn;
 	@FXML
@@ -53,7 +51,7 @@ public class SignUpController implements ControllerInterface{
 	@FXML
 	private CheckBox TOSToggle;
 	@FXML
-	//creates new user account using UsersReader and UsersWriter
+	// creates new user account using UsersReader and UsersWriter
 	public void createNewAcc() {
 		if(inputUser.getText().equals("") || inputEmail.getText().equals("") || inputPassword.getText().equals("") || inputRePassword.getText().equals("") || inputSecurityAnswer.getText().equals("") || securityComboBox.getSelectionModel().getSelectedItem() == null) {
 			errLabel.setText("Fields not filled!");
@@ -74,12 +72,12 @@ public class SignUpController implements ControllerInterface{
 			userList = ur.getAllUser();
 			for(User u : userList) {
 				if(u.getEmail().equals(inputEmail.getText())) {
-					//case if email already exists
+					// case if email already exists
 					errLabel.setText("Email already exists!");
 					return;
 				}
 				if(u.getUsername().equals(inputUser.getText())) {
-					//case if username already exists
+					// case if username already exists
 					errLabel.setText("Username already exists!");
 					return;
 				}
@@ -88,7 +86,7 @@ public class SignUpController implements ControllerInterface{
 			e1.printStackTrace();
 		} 
 		switchScene(createAccBttn, "view/login.fxml");
-		//creates new user and inputs data
+		// creates new user and inputs data
 		User newUser = new User();
 		PassUtil pwUtil = new PassUtil();
 		newUser.setUsername(inputUser.getText());

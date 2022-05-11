@@ -16,9 +16,8 @@ public class LoginController implements ControllerInterface {
 
 	private CommonObjs appInstance = CommonObjs.getInstance();
 
-	/*
-	 * This method will communicate with the DAO to authenticate the user
-	 */
+
+	// Gets all the users stored in database and searches for any matching users and checks the password
 	@FXML
 	private TextField usernameInput;
 	@FXML
@@ -47,25 +46,17 @@ public class LoginController implements ControllerInterface {
 		}
 	}
 
-	/*
-	 * When the sign up hyperlink is clicked, this method will switch to the sign up
-	 * page
-	 */
+	// When the sign up hyperlink is clicked, this method will switch to the sign up page
 	@FXML
 	private Hyperlink signUpHl;
-
 	@FXML
 	public void showSignUp() {
 		switchScene(signUpHl, "view/signup.fxml");
 	}
 
-	/*
-	 * When the forgot password hyperlink is clicked, this method will switch to the
-	 * forgot password page
-	 */
+	// When the forgot password hyperlink is clicked, this method will switch to the forgot password page
 	@FXML
 	private Hyperlink forgotPWHl;
-
 	@FXML
 	public void showForgot() {
 		switchScene(forgotPWHl, "view/forgot.fxml");

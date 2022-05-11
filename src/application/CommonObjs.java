@@ -9,12 +9,12 @@ import javafx.scene.layout.HBox;
 import model.Account;
 import model.User;
 
-//This is a Singleton instance that will share objects among all the controllers
+// This is a Singleton instance that will share objects among all the controllers
 public class CommonObjs {
 
 	private static CommonObjs appInstance = new CommonObjs();
 	
-	//Things that need to be shared
+	// Things that need to be shared
 	private HBox mainBox;
 	private User currentUser;
 	private ArrayList<Account> accountList;

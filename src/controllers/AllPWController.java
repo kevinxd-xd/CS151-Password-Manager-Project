@@ -26,11 +26,12 @@ import model.Account;
 import model.AccountsReader;
 import model.AccountsWriter;
 
-//Controls the logic behind the All Passwords table
+// Controls the logic behind the All Passwords table
 public class AllPWController {
 	
 	private CommonObjs appInstance = CommonObjs.getInstance();
 	
+	// Brings up a new window to fill out information to create a new password entry
 	@FXML
 	private Button addBttn;
 	public void openAddAccStage() {
@@ -62,7 +63,7 @@ public class AllPWController {
 	private TableView<Account> passwordTable;
 	@FXML
 	private Label statusLbl;
-	//initializes the table when user clicks on the All Passwords Tab
+	// initializes the table when user clicks on the All Passwords Tab
 	@FXML
 	public void initialize() {
 		appInstance.setPasswordTable(passwordTable);
@@ -78,12 +79,13 @@ public class AllPWController {
 		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expirationDate"));
 		credPW.setCellValueFactory(acc -> new SimpleStringProperty(pwUtil.decrypt(acc.getValue().getPassword())));
 		passwordTable.setItems(list);
+		passwordTable.setPlaceholder(new Label("No Password Entries Found"));
 	}
 	
 	
 	@FXML
 	private Button copyBttn;
-	//Copies password to clipboard of the selected row in the table
+	// Copies password to clipboard of the selected row in the table
 	@FXML
 	public void copyToClip() {
 		if (passwordTable.getSelectionModel().getSelectedItem() == null) {
@@ -130,7 +132,7 @@ public class AllPWController {
 	
 	@FXML
 	private Button deleteBttn;
-	//Deletes account depending on selected row in the table
+	// Deletes account depending on selected row in the table
 	@FXML
 	public void delete()  {
 		if (passwordTable.getSelectionModel().getSelectedItem() == null) {
@@ -140,11 +142,11 @@ public class AllPWController {
 		
 		try {
 			Account acc = passwordTable.getSelectionModel().getSelectedItem();
-			//deletes TempAccounts.csv to refresh contents
+			// deletes TempAccounts.csv to refresh contents
 			new File("./resources/data/TempAccounts.csv").getAbsoluteFile().delete();
 			AccountsWriter aw = new AccountsWriter();
 			AccountsReader ar = new AccountsReader();
-			//writes to TempAccounts.csv or makes new Accounts file if only one account remains
+			// writes to TempAccounts.csv or makes new Accounts file if only one account remains
 			ArrayList<Account> allAccounts = ar.getAllAccounts();
 			if (allAccounts.size() == 1) {
 				String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
@@ -157,7 +159,7 @@ public class AllPWController {
 						aw.writeTemp(aw.toString(a));
 					}
 				}
-				//writes in new password for user
+				// writes in new password for user
 				String abs = new File("./resources/data/Accounts.csv").getAbsolutePath();
 				new File(abs).delete();
 				aw.getInputFile().renameTo(new File(abs));
@@ -171,9 +173,7 @@ public class AllPWController {
 		statusLbl.setText("Status: Successfully deleted!");
 	}
 	
-	/*
-	 * Opens the edit tab for the specified entry
-	 */
+	// Opens the edit tab for the specified entry
 	@FXML
 	private Button editBttn;
 	@FXML
@@ -195,9 +195,7 @@ public class AllPWController {
 		}
 	}
 	
-	/*
-	 * Method to grab the latest csv file for accounts
-	 */
+	// Method to grab the latest csv file for accounts
 	private void updateAccList() {
 		AccountsReader ar = new AccountsReader();
 		try {
@@ -207,9 +205,7 @@ public class AllPWController {
 		}
 	}
 	
-	/*
-	 * Refreshes the table view of passwords
-	 */
+	// Refreshes the table view of passwords
 	private void refreshTable() {
 		updateAccList();
 		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());

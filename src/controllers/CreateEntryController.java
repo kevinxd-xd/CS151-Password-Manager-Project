@@ -28,6 +28,7 @@ public class CreateEntryController {
 	private Account accToAdd;
 	
 	
+	// Checks to see if we are in edit mode and if so sets the fields
 	@FXML
 	public void initialize() {
 		inEditMode = false;
@@ -79,9 +80,7 @@ public class CreateEntryController {
 	private TextField inputMax;
 	@FXML
 	private Label errorLbl;
-	/*
-	 * Saves entry to the csv file, will either edit or add new entry depending on the conditons
-	 */
+	// Saves entry to the csv file, will either edit or add new entry depending on the conditons
 	@FXML
 	public void saveToCSV() {
 		if (validateFields()) {
@@ -95,7 +94,12 @@ public class CreateEntryController {
 			accToAdd.setUserID(appInstance.getCurrentUser().getUserID());
 			accToAdd.setWebsiteName(inputWeb.getText());
 			accToAdd.setPassword(pwUtil.encrypt(inputPW.getText()));
-			accToAdd.setAccID(genID());
+			if (inEditMode) {
+				accToAdd.setAccID(editableAcc.getAccID());
+			}
+			else {
+				accToAdd.setAccID(genID());
+			}
 		}
 		
 		if (!this.accToAdd.equals(this.editableAcc)) {
@@ -158,8 +162,7 @@ public class CreateEntryController {
 	
 	// Generates a random string as a ID for each entry
 	private String genID() {
-		//Password generator algorithm
-       
+		// Random string generator algorithm
         StringBuilder randID = new StringBuilder();
         int baseLength = 15;
         
@@ -194,7 +197,7 @@ public class CreateEntryController {
         	randPass.append(regChars[randomNum]);
         }
         
-        //Insert random capital letter into random position
+        // Insert random capital letter into random position
         for (int i = 0; i < capChars; i++) {
         	int currentLenPass = randPass.toString().length();
         	char randomCaptial = (char)(ThreadLocalRandom.current().nextInt(25) + 65);
@@ -207,7 +210,7 @@ public class CreateEntryController {
         	}
         }
         
-        //Insert random special character into random position
+        // Insert random special character into random position
         for (int i = 0; i < specChars; i++) {
         	int currentLenPass = randPass.toString().length() - 1;
         	int randIndex = ThreadLocalRandom.current().nextInt(specialChars.length);

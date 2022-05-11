@@ -6,16 +6,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/*
- * The main class will launch the application
- */
+
+// The main class will launch the application
 public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		/*
-		 * Initializes the first scene to the login page
-		 */
+		// Initializes the first scene to the login page
 		try {
 			HBox root = (HBox)FXMLLoader.load(getClass().getClassLoader().getResource("view/login.fxml"));
 			Scene scene = new Scene(root,1000,800);

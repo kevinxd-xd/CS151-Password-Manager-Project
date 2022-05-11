@@ -28,7 +28,7 @@ public class ForgotPWController implements ControllerInterface{
 	}
 	@FXML
 	private Button recoverBttn;
-	//finds if email is in the .csv
+	// finds if email is in the .csv
 	@FXML
 	public void recoverPass() {
 		// Will communicate with DAO to retrieve security question and answer corresponding with the user
@@ -48,7 +48,7 @@ public class ForgotPWController implements ControllerInterface{
 		switchScene(recoverBttn, "view/sec_question.fxml");
 	}
 	
-	//method to help get user, returns null if not found
+	// method to help get user, returns null if not found
 	public User getUser(ArrayList<User> userList) {
 		for(User u : userList) {
 			if(u.getEmail().equals(inputEmail.getText())) {
