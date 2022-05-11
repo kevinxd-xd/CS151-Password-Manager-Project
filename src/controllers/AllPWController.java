@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import application.CommonObjs;
 import edu.sjsu.yazdankhah.crypto.util.PassUtil;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -68,13 +69,14 @@ public class AllPWController {
 		appInstance.setStatusLbl(statusLbl);
 		appInstance.setAccToEdit(null);
 		updateAccList();
+		PassUtil pwUtil = new PassUtil();
 		ObservableList<Account> list = FXCollections.observableArrayList(appInstance.getAccountList());
 		credEmail.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
 		credWeb.setCellValueFactory(new PropertyValueFactory<Account, String>("websiteName"));
 		credUser.setCellValueFactory(new PropertyValueFactory<Account, String>("username"));
 		credCreation.setCellValueFactory(new PropertyValueFactory<Account, String>("creationDate"));
 		credExpire.setCellValueFactory(new PropertyValueFactory<Account, String>("expirationDate"));
-		credPW.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
+		credPW.setCellValueFactory(acc -> new SimpleStringProperty(pwUtil.decrypt(acc.getValue().getPassword())));
 		passwordTable.setItems(list);
 	}
 	

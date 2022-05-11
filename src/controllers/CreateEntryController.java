@@ -156,8 +156,6 @@ public class CreateEntryController {
 		}
 	}
 	
-	
-	//93 + 33;
 	// Generates a random string as a ID for each entry
 	private String genID() {
 		//Password generator algorithm
