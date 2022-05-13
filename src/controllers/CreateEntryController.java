@@ -101,6 +101,9 @@ public class CreateEntryController {
 				accToAdd.setAccID(genID());
 			}
 		}
+		else {
+			return;
+		}
 		
 		if (!this.accToAdd.equals(this.editableAcc)) {
 			AccountsWriter aw = new AccountsWriter();

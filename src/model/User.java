@@ -67,9 +67,7 @@ public class User {
 		return result;
 	}
 
-	/*
-	 * If the email or username is the same, then they are the same object
-	 */
+	// If the email or username is the same, then they are the same object
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
